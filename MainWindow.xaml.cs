@@ -37,5 +37,18 @@ namespace Text_reader
                 AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
             }
         }
+
+        private void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (AddTextForReadingTb.Text.Length>0)
+            {
+                PlayPauseBtn.IsEnabled = true;
+                SaveInMp3Btn.IsEnabled = true;
+
+                return;
+            }
+            PlayPauseBtn.IsEnabled = false;
+            SaveInMp3Btn.IsEnabled = false;
+        }
     }
 }
