@@ -9,8 +9,8 @@
     <Viewbox>
         <Grid Width="329" Height="181">
             <TextBox Name="AddTextForReadingTb"  HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="265" Height="68"  />
-            <Button Name="AddTextFileBtn" Content="Add a new text file" HorizontalAlignment="Left" Margin="31,28,0,0" VerticalAlignment="Top" Width="103" Click="AddTextFileBtn_Click"/>
-            <TextBox Name="AddTextFileTb" HorizontalAlignment="Left" Margin="134,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161" Height="20"/>
+            <Button Name="AddTextFileBtn" Content="Add a new text file" HorizontalAlignment="Left" Margin="31,28,0,0" VerticalAlignment="Top" Width="103" Click="AddTextFileBtn_Click" />
+            <TextBox Name="TextFilesPathTb" HorizontalAlignment="Left" Margin="134,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161" Height="20" TextChanged="AddTextFileTb_TextChanged"/>
             <Button Name="SettingsBtn" Content="⚙️" HorizontalAlignment="Left" Margin="304,0,0,0" VerticalAlignment="Top" Height="21" Width="23"/>
 
             <Button Name="PlayPauseBtn" IsEnabled="False"  Content="Play" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="30"/>

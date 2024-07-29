@@ -24,5 +24,15 @@ namespace Text_reader
         {
             InitializeComponent();
         }
+
+        private void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddTextFileTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextFilesPathTb)
+        }
     }
 }
