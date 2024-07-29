@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace Text_reader
 {
     /// <summary>
@@ -32,7 +32,10 @@ namespace Text_reader
 
         private void AddTextFileTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TextFilesPathTb)
+            if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text) )
+            {
+                AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
+            }
         }
     }
 }
