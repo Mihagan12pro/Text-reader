@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 namespace Text_reader
 {
     /// <summary>
@@ -27,6 +28,14 @@ namespace Text_reader
 
         private void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openTextFile = new OpenFileDialog();
+
+            openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+
+            openTextFile.ShowDialog();
+
+
+            TextFilesPathTb.Text = openTextFile.FileName;   
 
         }
 
