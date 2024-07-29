@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+
+using System.Speech;
 namespace Text_reader
 {
     /// <summary>
