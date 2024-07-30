@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System.Net;
+using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
 
-using System.Speech;
-using System.Speech.Synthesis;
+using System.IO;
 namespace Text_reader
 {
     /// <summary>
@@ -24,40 +12,133 @@ namespace Text_reader
     /// </summary>
     public partial class MainWindow : Window
     {
-        SpeechSynthesizer synth = new SpeechSynthesizer();
+
        
+        
 
+        public static TextBox TextFilesPathPropTb { get; private set; }
+        public static TextBox AddTextForReadingPropTb { get; private set; }
 
-        string currentTextForSpeack = "";
+        public static Button AddTextFilePropBtn { get; private set; }
+        public static Button SettingsPropBtn { get; private set; }
+        public static Button SaveInMp3PropBtn { get; private set; }
+        public static Button PlayPauseResumePropBtn { get; private set; }
+
+        public static Slider PlayPropSlr { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            foreach(UIElement ui in MainGrid.Children)
+            foreach (UIElement ui in MainGrid.Children)
             {
-                MainWindowMethods.UiList.Add(ui);
+                
+
+                if (ui is Button)
+                {
+                    Button button = (Button)ui;
+
+                    switch (button.Name)
+                    {
+                        case "AddTextFileBtn":
+                            AddTextFilePropBtn = AddTextFileBtn;
+                            break;
+
+                        case "SettingsBtn":
+                            SettingsPropBtn = SettingsBtn;
+                            break;
+
+                        case "SaveInMp3Btn":
+                            SaveInMp3PropBtn = SaveInMp3Btn;
+                            break;
+                        case "PlayPauseResumeBtn":
+                            PlayPauseResumePropBtn = PlayPauseResumeBtn;
+                            break;
+                    }
+                }
+                else if (ui is Slider)
+                {
+                    Slider slider = (Slider)ui;
+
+                    switch (slider.Name)
+                    {
+                        case "PlaySlr":
+                            PlayPropSlr = PlaySlr;
+                            break;
+                    }
+                }
+                else if (ui is TextBox)
+                {
+                    TextBox textBox = (TextBox)ui;
+
+                    switch(textBox.Name)
+                    {
+                        case "AddTextForReadingTb":
+                            AddTextForReadingPropTb = AddTextForReadingTb;
+                            break;
+                        case "TextFilesPathTb":
+                            TextFilesPathPropTb = TextFilesPathTb;
+                            break;
+                    }
+                }
             }
 
 
-            AddTextFileBtn.Click += MainWindowMethods.AddTextFileBtn_Click;
-            TextFilesPathTb.TextChanged += MainWindowMethods.TextFilesPathTb_TextChanged;
-            AddTextForReadingTb.TextChanged += MainWindowMethods.AddTextForReadingTb_TextChanged;
+            AddTextFileBtn.Click += AddTextFileBtn_Click;
+            TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
+            AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
 
 
 
-            MainWindowMethods.InitiliazeStaticFilelds();
+            
 
+          
         }
 
 
-   
+
+
+        public static void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openTextFile = new OpenFileDialog();
+
+            openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+
+            openTextFile.ShowDialog();
+
+
+            TextFilesPathPropTb.Text = openTextFile.FileName;
+
+        }
+
+        public static void TextFilesPathTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextFilesPathPropTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathPropTb.Text))
+            {
+                AddTextForReadingPropTb.Text = File.ReadAllText(TextFilesPathPropTb.Text);
+            }
+        }
+
+        public static void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (AddTextForReadingPropTb.Text.Length > 0)
+            {
+                PlayPauseResumePropBtn.IsEnabled = true;
+                SaveInMp3PropBtn.IsEnabled = true;
+
+                return;
+            }
+            PlayPauseResumePropBtn.IsEnabled = false;
+            SaveInMp3PropBtn.IsEnabled = false;
+        }
+
 
         //private void Synth_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
         //{
         //    PlayPauseResumeBtn.Content = "Play";
         //}
 
-        
+
 
         //private void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
         //{

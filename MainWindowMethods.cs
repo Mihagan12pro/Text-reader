@@ -18,9 +18,32 @@ namespace Text_reader
 
         public static List<UIElement> UiList { get { return uiList; } }
 
-        private static TextBox AddTextForReadingTb, TextFilesPathTb;
+        private static TextBox addTextForReadingTb, TextFilesPathTb;
         private static Button AddTextFileBtn, SettingsBtn,  SaveInMp3Btn, PlayPauseResumeBtn;
         private static Slider PlaySlr;
+
+        
+
+        //private struct Elements
+        //{
+        //    public readonly TextBox AddTextForReadingTb;
+
+        //    public readonly TextBox TextFilesPathTb;
+
+        //    public readonly Button AddTextFileBtn, SettingsBtn, SaveInMp3Btn, PlayPauseResumeBtn;
+
+        //    public Elements(TextBox addTextForReadingTb,TextBox textFilesPathTb, Button addTextFileBtn, Button  settingsBtn,Button saveInMp3Btn,Button playPauseResumeBtn,Slider playSlr)
+        //    {
+        //        AddTextForReadingTb = addTextForReadingTb;
+        //        TextFilesPathTb = textFilesPathTb;
+
+        //        AddTextFileBtn = addTextFileBtn;
+        //        SettingsBtn = settingsBtn;
+
+
+        //    }
+        //}
+
 
         public static void InitiliazeStaticFilelds()
         {
@@ -30,12 +53,15 @@ namespace Text_reader
                 {
                     if (ui is TextBox)
                     {
+
+                       
+
                         TextBox textbox = (TextBox)ui;
 
                         switch (textbox.Name)
                         {
                             case "AddTextForReadingTb":
-                                AddTextForReadingTb = textbox;
+                                addTextForReadingTb = textbox;
                                 break;
                             case "TextFilesPathTb":
                                 TextFilesPathTb = textbox;
@@ -99,13 +125,13 @@ namespace Text_reader
         {
             if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text))
             {
-                AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
+                addTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
             }
         }
 
         public static void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (AddTextForReadingTb.Text.Length > 0)
+            if (addTextForReadingTb.Text.Length > 0)
             {
                 PlayPauseResumeBtn.IsEnabled = true;
                 SaveInMp3Btn.IsEnabled = true;
