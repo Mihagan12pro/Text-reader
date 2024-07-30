@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
+using System.IO;
+
 namespace Text_reader
 {
     internal static class MainWindowMethods
@@ -76,6 +80,40 @@ namespace Text_reader
 
                 }
             }
+        }
+
+        public static void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openTextFile = new OpenFileDialog();
+
+            openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+
+            openTextFile.ShowDialog();
+
+
+            TextFilesPathTb.Text = openTextFile.FileName;
+
+        }
+
+        public static  void TextFilesPathTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text))
+            {
+                AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
+            }
+        }
+
+        public static void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (AddTextForReadingTb.Text.Length > 0)
+            {
+                PlayPauseResumeBtn.IsEnabled = true;
+                SaveInMp3Btn.IsEnabled = true;
+
+                return;
+            }
+            PlayPauseResumeBtn.IsEnabled = false;
+            SaveInMp3Btn.IsEnabled = false;
         }
 
     }

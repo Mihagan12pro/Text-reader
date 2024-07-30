@@ -39,9 +39,9 @@ namespace Text_reader
             }
 
 
-            AddTextFileBtn.Click += AddTextFileBtn_Click;
-            TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
-            AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
+            AddTextFileBtn.Click += MainWindowMethods.AddTextFileBtn_Click;
+            TextFilesPathTb.TextChanged += MainWindowMethods.TextFilesPathTb_TextChanged;
+            AddTextForReadingTb.TextChanged += MainWindowMethods.AddTextForReadingTb_TextChanged;
 
 
 
@@ -57,39 +57,7 @@ namespace Text_reader
         //    PlayPauseResumeBtn.Content = "Play";
         //}
 
-        private void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openTextFile = new OpenFileDialog();
-
-            openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-
-            openTextFile.ShowDialog();
-
-
-            TextFilesPathTb.Text = openTextFile.FileName;
-
-        }
-
-        private void TextFilesPathTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text))
-            {
-                AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
-            }
-        }
-
-        private void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (AddTextForReadingTb.Text.Length > 0)
-            {
-                PlayPauseResumeBtn.IsEnabled = true;
-                SaveInMp3Btn.IsEnabled = true;
-
-                return;
-            }
-            PlayPauseResumeBtn.IsEnabled = false;
-            SaveInMp3Btn.IsEnabled = false;
-        }
+        
 
         //private void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
         //{
