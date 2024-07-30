@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.Win32;
 
 using System.Speech;
+using System.Speech.Synthesis;
 namespace Text_reader
 {
     /// <summary>
@@ -23,43 +24,103 @@ namespace Text_reader
     /// </summary>
     public partial class MainWindow : Window
     {
+        SpeechSynthesizer synth = new SpeechSynthesizer();
+        bool isPaused = false;
+
+
+        string currentTextForSpeack = "";
         public MainWindow()
         {
             InitializeComponent();
+
+            
+
+            
         }
 
-        private void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openTextFile = new OpenFileDialog();
+        //private void Synth_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
+        //{
+        //    PlayPauseResumeBtn.Content = "Play";
+        //}
 
-            openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+        //private void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog openTextFile = new OpenFileDialog();
 
-            openTextFile.ShowDialog();
+        //    openTextFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+
+        //    openTextFile.ShowDialog();
 
 
-            TextFilesPathTb.Text = openTextFile.FileName;   
+        //    TextFilesPathTb.Text = openTextFile.FileName;   
 
-        }
+        //}
 
-        private void AddTextFileTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text) )
-            {
-                AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
-            }
-        }
+        //private void AddTextFileTb_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (TextFilesPathTb.Text.EndsWith(".txt") && File.Exists(TextFilesPathTb.Text) )
+        //    {
+        //        AddTextForReadingTb.Text = File.ReadAllText(TextFilesPathTb.Text);
+        //    }
+        //}
 
-        private void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (AddTextForReadingTb.Text.Length>0)
-            {
-                PlayPauseBtn.IsEnabled = true;
-                SaveInMp3Btn.IsEnabled = true;
+        //private void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (AddTextForReadingTb.Text.Length>0)
+        //    {
+        //        PlayPauseResumeBtn.IsEnabled = true;
+        //        SaveInMp3Btn.IsEnabled = true;
 
-                return;
-            }
-            PlayPauseBtn.IsEnabled = false;
-            SaveInMp3Btn.IsEnabled = false;
-        }
+        //        return;
+        //    }
+        //    PlayPauseResumeBtn.IsEnabled = false;
+        //    SaveInMp3Btn.IsEnabled = false;
+        //}
+
+        //private void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
+        //{
+          
+               
+
+
+
+
+        //    if (isPaused)
+        //    {
+        //        synth.Resume();
+        //        isPaused = false;
+        //        PlayPauseResumeBtn.Content = "Pause";
+
+                
+        //    }
+        //    else
+        //    {
+        //        if (synth.State == SynthesizerState.Speaking)
+        //        {
+        //            synth.Pause();
+        //            isPaused = true;
+        //            PlayPauseResumeBtn.Content = "Resume";
+        //        }
+        //        else
+        //        {
+        //            if (PlayPauseResumeBtn.Content == "Play")
+        //            {
+        //                currentTextForSpeack = AddTextForReadingTb.Text;
+
+        //                var a = currentTextForSpeack;
+        //            }
+
+                  
+
+
+        //            synth.SetOutputToDefaultAudioDevice();
+        //            synth.SpeakAsync(AddTextForReadingTb.Text);
+        //            PlayPauseResumeBtn.Content = "Pause";
+        //        }
+        //    }
+        //}
+
+        
+       
     }
 }
