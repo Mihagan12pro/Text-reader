@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TextReader" Height="450" Width="800" Background="Azure">
     <Viewbox>
-        <Grid Width="329" Height="181">
+        <Grid Width="329" Height="181" Name="MainGrid">
             <TextBox Name="AddTextForReadingTb"  HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="265" Height="68"  />
             <Button Name="AddTextFileBtn" Content="Add a new text file" HorizontalAlignment="Left" Margin="31,28,0,0" VerticalAlignment="Top" Width="103" />
             <TextBox Name="TextFilesPathTb" HorizontalAlignment="Left" Margin="134,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161" Height="20" />

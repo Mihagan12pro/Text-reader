@@ -33,12 +33,19 @@ namespace Text_reader
         {
             InitializeComponent();
 
+            foreach(UIElement ui in MainGrid.Children)
+            {
+                MainWindowMethods.UiList.Add(ui);
+            }
 
 
             AddTextFileBtn.Click += AddTextFileBtn_Click;
             TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
             AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
 
+
+
+            MainWindowMethods.InitiliazeStaticFilelds();
 
         }
 
