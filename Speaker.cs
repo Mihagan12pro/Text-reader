@@ -16,13 +16,15 @@ namespace Text_reader
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
 
-
+        private bool isPlay = true;
 
         public Speaker()
         {
             MainWindow.AddTextForReadingPropTb.TextChanged -= MainWindow.AddTextForReadingTb_TextChanged;
             MainWindow.TextFilesPathPropTb.TextChanged -= MainWindow.TextFilesPathTb_TextChanged;
             MainWindow.PlayPauseResumePropBtn.Click -= MainWindow.PlayPauseResumeBtn_Click;
+
+            MainWindow.PlayPauseResumePropBtn.Click += PausePlay_Click;
 
             string text = MainWindow.AddTextForReadingPropTb.Text;
             string filePath = "output.wav";
@@ -38,7 +40,7 @@ namespace Text_reader
 
             FileInfo file = new FileInfo(filePath);
 
-   
+            MainWindow.PlayPropSlr.IsEnabled = true;
 
             MainWindow.AudioPropMiaEl.Source = new Uri(file.FullName);
 
@@ -46,6 +48,27 @@ namespace Text_reader
 
             MainWindow.AudioPropMiaEl.Play();
         }
+
+        private void PausePlay_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPlay)
+            {
+                isPlay = false;
+
+                MainWindow.PlayPauseResumePropBtn.Content = "Resume";
+
+                MainWindow.AudioPropMiaEl.Pause();
+
+                return;
+            }
+            isPlay = true;
+
+            MainWindow.PlayPauseResumePropBtn.Content = "Pause";
+
+            MainWindow.AudioPropMiaEl.Play();
+        }
+
+        
 
 
 
