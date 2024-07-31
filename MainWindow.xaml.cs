@@ -87,16 +87,25 @@ namespace Text_reader
             AddTextFileBtn.Click += AddTextFileBtn_Click;
             TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
             AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
+            PlayPauseResumeBtn.Click += PlayPauseResumeBtn_Click;
 
 
 
-            
 
-          
+
+
         }
 
 
+        public static void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddTextForReadingPropTb.Text.Length >0)
+            {
+                Speaker speaker = new Speaker();
 
+                PlayPauseResumePropBtn.Content = "Pause";
+            }
+        }
 
         public static void AddTextFileBtn_Click(object sender, RoutedEventArgs e)
         {

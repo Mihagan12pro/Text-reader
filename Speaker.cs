@@ -10,7 +10,7 @@ namespace Text_reader
 {
     internal class Speaker
     {
-        private TextBox AddTextForReadingTb, TextFilesPathTb, PlayPauseResumeBtn;
+      
 
 
 
@@ -18,7 +18,10 @@ namespace Text_reader
 
         public Speaker()
         {
-
+            MainWindow.AddTextForReadingPropTb.TextChanged -= MainWindow.AddTextForReadingTb_TextChanged;
+            MainWindow.TextFilesPathPropTb.TextChanged -= MainWindow.TextFilesPathTb_TextChanged;
+            //MainWindow.AddTextFilePropBtn.Click -= MainWindow.AddTextFileBtn_Click;
+            MainWindow.PlayPauseResumePropBtn.Click -= MainWindow.PlayPauseResumeBtn_Click;
         }
 
 
