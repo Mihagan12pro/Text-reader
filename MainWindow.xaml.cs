@@ -26,13 +26,15 @@ namespace Text_reader
 
         public static Slider PlayPropSlr { get; private set; }
 
+        public static MediaElement AudioPropMiaEl { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
             foreach (UIElement ui in MainGrid.Children)
             {
-                
+
 
                 if (ui is Button)
                 {
@@ -54,6 +56,7 @@ namespace Text_reader
                         case "PlayPauseResumeBtn":
                             PlayPauseResumePropBtn = PlayPauseResumeBtn;
                             break;
+
                     }
                 }
                 else if (ui is Slider)
@@ -71,7 +74,7 @@ namespace Text_reader
                 {
                     TextBox textBox = (TextBox)ui;
 
-                    switch(textBox.Name)
+                    switch (textBox.Name)
                     {
                         case "AddTextForReadingTb":
                             AddTextForReadingPropTb = AddTextForReadingTb;
@@ -81,6 +84,22 @@ namespace Text_reader
                             break;
                     }
                 }
+
+                else if (ui is MediaElement)
+                {
+                    MediaElement media = (MediaElement)ui;
+
+                    switch(media.Name)
+                    {
+                        case "AudioMiaEl":
+                            AudioPropMiaEl = media;
+                            break;
+                    }
+                    //case "AudioMiaEl":
+                    //   AudioPropMiaEl = AudioMiaEl;
+                    //   break;
+
+                }
             }
 
 
@@ -89,7 +108,7 @@ namespace Text_reader
             AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
             PlayPauseResumeBtn.Click += PlayPauseResumeBtn_Click;
 
-
+            AudioMiaEl.LoadedBehavior = MediaState.Manual;
 
 
 
