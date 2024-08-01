@@ -47,7 +47,12 @@ namespace Text_reader
            
 
             MainWindow.AudioPropMiaEl.Play();
+
+
+
+            MainWindow.PlayPropSlr.ValueChanged += PlayPropSlr_ValueChanged;
         }
+
 
         private void PausePlay_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +73,12 @@ namespace Text_reader
             MainWindow.AudioPropMiaEl.Play();
         }
 
-        
+        private  void PlayPropSlr_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            MainWindow.AudioPropMiaEl.Position =TimeSpan.FromSeconds( MainWindow.PlayPropSlr.Value);
+        }
+
+
 
 
 
