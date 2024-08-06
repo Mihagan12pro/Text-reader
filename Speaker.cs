@@ -49,7 +49,7 @@ namespace Text_reader
 
             MainWindow.AudioPropMiaEl.Play();
 
-
+            MainWindow.AudioPropMiaEl.MediaEnded += AudioMiaEl_MediaEnded;
 
             MainWindow.PlayPropSlr.ValueChanged += PlayPropSlr_ValueChanged;
         }
@@ -80,7 +80,22 @@ namespace Text_reader
         }
 
 
+        private  void AudioMiaEl_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            
 
+            MainWindow.AudioPropMiaEl.Position = System.TimeSpan.FromSeconds(0);
+
+
+
+            MainWindow.PlayPauseResumePropBtn.Content = "Play";
+
+            MainWindow.AudioPropMiaEl.Pause();
+
+            isPlay = false;
+
+
+        }
 
 
 

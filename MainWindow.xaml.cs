@@ -123,10 +123,13 @@ namespace Text_reader
 
             AudioMiaEl.LoadedBehavior = MediaState.Manual;
 
+           //AudioPropMiaEl.MediaEnded += AudioMiaEl_MediaEnded;
 
 
 
         }
+
+
 
         private void AudioPropMiaEl_MediaOpened(object sender, RoutedEventArgs e)
         {
@@ -135,6 +138,7 @@ namespace Text_reader
                 PlayPropSlr.Maximum = AudioPropMiaEl.NaturalDuration.TimeSpan.TotalSeconds;
             }
         }
+       
 
         public  void Timer_Tick(object sender, EventArgs e)
         {
@@ -187,6 +191,11 @@ namespace Text_reader
             }
             PlayPauseResumePropBtn.IsEnabled = false;
             SaveInMp3PropBtn.IsEnabled = false;
+        }
+
+        private void SaveInMp3Btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
