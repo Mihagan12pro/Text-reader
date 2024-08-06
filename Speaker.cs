@@ -16,6 +16,7 @@ namespace Text_reader
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
 
+
         private bool isPlay = true;
 
         public Speaker()

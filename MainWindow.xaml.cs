@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 
 using System.IO;
+using System.Windows.Threading;
+using System;
 namespace Text_reader
 {
     /// <summary>
@@ -13,8 +15,8 @@ namespace Text_reader
     public partial class MainWindow : Window
     {
 
-       
-        
+
+        private DispatcherTimer timer;
 
         public static TextBox TextFilesPathPropTb { get; private set; }
         public static TextBox AddTextForReadingPropTb { get; private set; }
@@ -31,6 +33,15 @@ namespace Text_reader
         public MainWindow()
         {
             InitializeComponent();
+
+
+            timer = new DispatcherTimer();
+
+            timer.Interval = TimeSpan.FromMilliseconds(10);
+
+            timer.Tick += new EventHandler(Timer_Tick);
+
+            timer.Start();
 
             foreach (UIElement ui in MainGrid.Children)
             {
@@ -108,12 +119,30 @@ namespace Text_reader
             AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
             PlayPauseResumeBtn.Click += PlayPauseResumeBtn_Click;
 
+            AudioPropMiaEl.MediaOpened += AudioPropMiaEl_MediaOpened;
+
             AudioMiaEl.LoadedBehavior = MediaState.Manual;
 
 
 
 
         }
+
+        private void AudioPropMiaEl_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            if (AudioPropMiaEl.NaturalDuration.HasTimeSpan)
+            {
+                PlayPropSlr.Maximum = AudioPropMiaEl.NaturalDuration.TimeSpan.TotalSeconds;
+            }
+        }
+
+        public  void Timer_Tick(object sender, EventArgs e)
+        {
+            PlayPropSlr.Value = AudioPropMiaEl.Position.TotalSeconds;
+        }
+
+
+
 
 
         public static void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
