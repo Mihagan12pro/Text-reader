@@ -8,6 +8,9 @@ using System.Windows.Controls;
 using System.Speech;
 using System.Speech.Synthesis;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using NAudio.Wave;
+using NAudio.Lame;
 namespace Text_reader
 {
     internal class Speaker
@@ -29,6 +32,8 @@ namespace Text_reader
 
             string text = MainWindow.AddTextForReadingPropTb.Text;
             string filePath = "output.wav";
+
+            MainWindow.SaveInMp3PropBtn.Click += SaveInMp3PropBtn_Click;
 
             if (File.Exists(filePath))
             {
@@ -98,7 +103,18 @@ namespace Text_reader
         }
 
 
+        private void SaveInMp3PropBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists("output.wav"))
+            {
+                synthesizer.SetOutputToWaveFile("output.wav");
+                synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
+                synthesizer.SetOutputToDefaultAudioDevice();
+            }
 
+
+
+        }
 
     }
 }
