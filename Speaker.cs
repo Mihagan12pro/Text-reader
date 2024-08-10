@@ -11,6 +11,7 @@ using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using NAudio.Wave;
 using NAudio.Lame;
+using Microsoft.Win32;
 namespace Text_reader
 {
     internal class Speaker
@@ -112,8 +113,32 @@ namespace Text_reader
                 synthesizer.SetOutputToDefaultAudioDevice();
             }
 
+            using (AudioFileReader wav = new AudioFileReader("output.wav"))
+            {
+              
+              
+                LameMP3FileWriter mp3 = new LameMP3FileWriter("output.mp3",wav.WaveFormat,LAMEPreset.STANDARD);
+
+                wav.CopyTo(mp3);
+
+                mp3.Close();
+
+                wav.Close();
+            }
+
+            File.Delete("output.wav");
 
 
+            SaveFileDialog saveMP3 = new SaveFileDialog();
+
+            saveMP3.FileName = "output.mp3";
+            saveMP3.Filter = "Video files (*.mp3)|*.mp3|All files (*.*)|*.*";
+            if (saveMP3.ShowDialog()==true)
+            {
+                FileInfo fileInfo = new FileInfo("output.mp3");
+                File.Move("output.mp3",saveMP3.FileName);
+                
+            }
         }
 
     }
