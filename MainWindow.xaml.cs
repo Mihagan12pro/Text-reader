@@ -116,7 +116,7 @@ namespace Text_reader
 
             AddTextFileBtn.Click += AddTextFileBtn_Click;
             TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
-            AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextChanged;
+            AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextAdded;
             PlayPauseResumeBtn.Click += PlayPauseResumeBtn_Click;
 
             AudioPropMiaEl.MediaOpened += AudioPropMiaEl_MediaOpened;
@@ -180,12 +180,12 @@ namespace Text_reader
             }
         }
 
-        public static void AddTextForReadingTb_TextChanged(object sender, TextChangedEventArgs e)
+        public static void AddTextForReadingTb_TextAdded(object sender, TextChangedEventArgs e)
         {
             if (AddTextForReadingPropTb.Text.Length > 0)
             {
+                
                 PlayPauseResumePropBtn.IsEnabled = true;
-                SaveInMp3PropBtn.IsEnabled = true;
 
                 return;
             }

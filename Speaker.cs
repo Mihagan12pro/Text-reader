@@ -19,20 +19,23 @@ namespace Text_reader
 
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
-
+        private string originText;
 
         private bool isPlay = true;
 
         public Speaker()
         {
-            MainWindow.AddTextForReadingPropTb.TextChanged -= MainWindow.AddTextForReadingTb_TextChanged;
+            MainWindow.AddTextForReadingPropTb.TextChanged -= MainWindow.AddTextForReadingTb_TextAdded;
             MainWindow.TextFilesPathPropTb.TextChanged -= MainWindow.TextFilesPathTb_TextChanged;
             MainWindow.PlayPauseResumePropBtn.Click -= MainWindow.PlayPauseResumeBtn_Click;
 
+            MainWindow.SaveInMp3PropBtn.IsEnabled = true;
             MainWindow.PlayPauseResumePropBtn.Click += PausePlay_Click;
 
             string text = MainWindow.AddTextForReadingPropTb.Text;
             string filePath = "output.wav";
+
+            originText = text;
 
             MainWindow.SaveInMp3PropBtn.Click += SaveInMp3PropBtn_Click;
 
@@ -60,7 +63,7 @@ namespace Text_reader
             MainWindow.PlayPropSlr.ValueChanged += PlayPropSlr_ValueChanged;
         }
 
-
+        private void (object sender, RoutedEventArgs e)
         private void PausePlay_Click(object sender, RoutedEventArgs e)
         {
             if (isPlay)
@@ -135,7 +138,11 @@ namespace Text_reader
             saveMP3.Filter = "Video files (*.mp3)|*.mp3|All files (*.*)|*.*";
             if (saveMP3.ShowDialog()==true)
             {
-                FileInfo fileInfo = new FileInfo("output.mp3");
+                if (File.Exists(saveMP3.FileName))
+                {
+                    File.Delete(saveMP3.FileName);
+                }
+
                 File.Move("output.mp3",saveMP3.FileName);
                 
             }
