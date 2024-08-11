@@ -22,6 +22,8 @@ namespace Text_reader
 
         private string originText;
 
+        private string originPath;
+
         private bool isPlay = true;
 
         public Speaker()
@@ -38,6 +40,8 @@ namespace Text_reader
 
             originText = text;
 
+            originPath = MainWindow.TextFilesPathPropTb.Text;
+
             MainWindow.SaveInMp3PropBtn.Click += SaveInMp3PropBtn_Click;
 
            
@@ -45,7 +49,7 @@ namespace Text_reader
             AddAudioToAudioMiaEl();
 
 
-
+            MainWindow.TextFilesPathPropTb.TextChanged += TextFilesPathTb_PathChanged;
 
             MainWindow.AudioPropMiaEl.Play();
 
@@ -56,6 +60,23 @@ namespace Text_reader
             MainWindow.AddTextForReadingPropTb.TextChanged += AddTextForReadingTb_CheckChanges;
 
             speaker = this;
+        }
+
+
+        private  void TextFilesPathTb_PathChanged(object sender, RoutedEventArgs e)
+        {
+            if (originPath != MainWindow.TextFilesPathPropTb.Text && File.Exists(MainWindow.TextFilesPathPropTb.Text))
+            {
+                isPlay = false;
+                AddAudioToAudioMiaEl();
+                MainWindow.PlayPauseResumePropBtn.Content = "Play";
+
+                MainWindow.AddTextForReadingPropTb.Text = File.ReadAllText(MainWindow.TextFilesPathPropTb.Text);
+
+                MainWindow.AudioPropMiaEl.Stop();
+
+
+            }
         }
 
         private static void AddAudioToAudioMiaEl()
@@ -103,7 +124,13 @@ namespace Text_reader
 
                 if (MainWindow.AddTextForReadingPropTb.Text !="")
                 {
+                    
+
+
                     AddAudioToAudioMiaEl();
+
+                    originText = MainWindow.AddTextForReadingPropTb.Text;
+
                     return;
                     
                 }
