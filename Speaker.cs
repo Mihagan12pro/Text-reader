@@ -104,9 +104,7 @@ namespace Text_reader
 
             MainWindow.AudioPropMiaEl.Source = new Uri(file.FullName);
 
-            //File.Delete("output.wav");
 
-            //MainWindow.AudioPropMiaEl.Play();
 
             
 

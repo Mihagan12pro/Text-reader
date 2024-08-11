@@ -30,6 +30,23 @@ namespace Text_reader
 
         public static MediaElement AudioPropMiaEl { get; private set; }
 
+
+
+
+
+
+
+
+
+
+        public static Button MinimizeSpeedPropBtn { get; private set; }
+        public static Button MaximizeSpeedPropBtn { get; private set; }
+
+        public static Slider VolumeControllPropSlr { get; private set; }
+
+        public static Label SpeedControlPropLbl { get; private set; }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -68,6 +85,20 @@ namespace Text_reader
                             PlayPauseResumePropBtn = PlayPauseResumeBtn;
                             break;
 
+
+
+
+                        case "MinimizeSpeedBtn":
+                            MinimizeSpeedPropBtn = MinimizeSpeedBtn;
+
+                            MinimizeSpeedBtn.IsEnabled = false;
+                            break;
+                        case "MaximizeSpeedBtn":
+                            MaximizeSpeedPropBtn = MaximizeSpeedBtn;
+                            MaximizeSpeedBtn.IsEnabled = false;
+                            break;
+                      
+
                     }
                 }
                 else if (ui is Slider)
@@ -78,6 +109,12 @@ namespace Text_reader
                     {
                         case "PlaySlr":
                             PlayPropSlr = PlaySlr;
+                            break;
+
+                        case "VolumeControllSlr":
+                            VolumeControllPropSlr = VolumeControllSlr;
+
+                            VolumeControllPropSlr.IsEnabled = false;
                             break;
                     }
                 }
@@ -110,6 +147,20 @@ namespace Text_reader
                     //   AudioPropMiaEl = AudioMiaEl;
                     //   break;
 
+                }
+
+                else if (ui is Label)
+                {
+                    Label label = (Label)ui;
+
+                    switch(label.Name)
+                    {
+                        case "SpeedControlLbl":
+                            SpeedControlPropLbl = SpeedControlLbl;
+
+                            SpeedControlLbl.IsEnabled = false;
+                            break;
+                    }
                 }
             }
 
@@ -196,6 +247,30 @@ namespace Text_reader
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MinimizeSpeedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToDouble(SpeedControlLbl.Content)>0.5)
+            {
+                double content = Convert.ToDouble(SpeedControlLbl.Content);
+
+                content -= 0.5;
+
+                SpeedControlLbl.Content = Convert.ToString( content);
+            }
+        }
+
+        private void MaximizeSpeedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToDouble(SpeedControlLbl.Content) < 2.5)
+            {
+                double content = Convert.ToDouble(SpeedControlLbl.Content);
+
+                content += 0.5;
+
+                SpeedControlLbl.Content = Convert.ToString(content);
+            }
         }
 
 
