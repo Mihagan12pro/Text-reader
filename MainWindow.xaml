@@ -8,15 +8,21 @@
         Title="TextReader" Height="450" Width="800" MinHeight="450" MinWidth="800" Background="Azure">
     <Viewbox>
         <Grid Width="329" Height="181" Name="MainGrid">
-            <TextBox Name="AddTextForReadingTb"  HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="265" Height="68"  />
-            <Button Name="AddTextFileBtn" Content="Add a new text file" HorizontalAlignment="Left" Margin="32,28,0,0" VerticalAlignment="Top" Width="102" />
-            <TextBox Name="TextFilesPathTb" HorizontalAlignment="Left" Margin="134,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Height="20" />
-            <Button Name="SettingsBtn" Content="⚙️" HorizontalAlignment="Left" Margin="304,0,0,0" VerticalAlignment="Top" Height="21" Width="23"/>
+            <TextBox Name="AddTextForReadingTb"  HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="291" Height="68"  />
+            <Button Name="AddTextFileBtn" Content="Add a new text file" HorizontalAlignment="Left" Margin="19,28,0,0" VerticalAlignment="Top" Width="125" />
+            <TextBox Name="TextFilesPathTb" HorizontalAlignment="Left" Margin="144,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" Height="20" />
+            <Button Name="SettingsBtn" Content="⚙️" HorizontalAlignment="Left" Margin="304,0,0,0" VerticalAlignment="Top" Height="21" Width="23" Click="SettingsBtn_Click"/>
 
-            <Button Name="PlayPauseResumeBtn" IsEnabled="False"  Content="Play" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top" Width="45" />
-            <Slider Name="PlaySlr" IsEnabled="False"  Margin="81,131,31,26"></Slider>
-            <Button Content="Save audio in mp3" IsEnabled="False"  Name="SaveInMp3Btn" HorizontalAlignment="Left" Margin="113,152,0,0" VerticalAlignment="Top" Height="19" Width="106" />
+            <Button Name="PlayPauseResumeBtn" IsEnabled="False"  Content="Play" HorizontalAlignment="Left" Margin="19,130,0,0" VerticalAlignment="Top" Width="52" />
+            <Slider Name="PlaySlr" IsEnabled="False"  Margin="76,131,15,26"></Slider>
+            <Button Content="Save audio in mp3" IsEnabled="False"  Name="SaveInMp3Btn" HorizontalAlignment="Left" Margin="89,153,0,0" VerticalAlignment="Top" Height="19" Width="106" />
             <MediaElement Name="AudioMiaEl"  HorizontalAlignment="Left" Height="62" Margin="308,95,0,0" VerticalAlignment="Top" Width="9"/>
+
+            <Slider HorizontalAlignment="Left" Name="VolumeControllSlr" Maximum="100" Minimum="1" Value="20" Margin="249,152,0,0" VerticalAlignment="Top" Width="58"/>
+            <Label Background="#a3ffff" BorderBrush="#94f7f7" BorderThickness="0.5" HorizontalAlignment="Left" FontSize="8" Name="SpeedControlLbl" Margin="36,153,0,0"  Content="1" VerticalAlignment="Top" Width="14" Height="22"/>
+            <Button Name="MinimizeSpeedBtn" Content="&lt;=" FontSize="8" HorizontalAlignment="Left" Margin="19,153,0,0" VerticalAlignment="Top" Width="17" Height="22"/>
+            <Button Content="=>" Name="MaximizeSpeedBtn" HorizontalAlignment="Left" FontSize="8" Margin="50,153,0,0" VerticalAlignment="Top" Width="17" Height="22"/>
+
 
 
         </Grid>

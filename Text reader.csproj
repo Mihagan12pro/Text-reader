@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Speaker.cs" />
+    <Compile Include="SpeakerPrompt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -193,7 +193,12 @@ namespace Text_reader
             SaveInMp3PropBtn.IsEnabled = false;
         }
 
-        
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
 
 
         //private void Synth_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
