@@ -28,12 +28,19 @@ namespace Text_reader
 
         public Speaker()
         {
+            MainWindow.SaveInMp3PropBtn.IsEnabled = true;
+            MainWindow.VolumeControllPropSlr.IsEnabled = true;
+
+
+
             MainWindow.AddTextForReadingPropTb.TextChanged -= MainWindow.AddTextForReadingTb_TextAdded;
             MainWindow.TextFilesPathPropTb.TextChanged -= MainWindow.TextFilesPathTb_TextChanged;
             MainWindow.PlayPauseResumePropBtn.Click -= MainWindow.PlayPauseResumeBtn_Click;
 
-            MainWindow.SaveInMp3PropBtn.IsEnabled = true;
+         
             MainWindow.PlayPauseResumePropBtn.Click += PausePlay_Click;
+
+            MainWindow.VolumeControllPropSlr.ValueChanged += VolumeControllSlr_ValueChanged;
 
             string text = MainWindow.AddTextForReadingPropTb.Text;
             string filePath = "output.wav";
@@ -60,6 +67,9 @@ namespace Text_reader
             MainWindow.AddTextForReadingPropTb.TextChanged += AddTextForReadingTb_CheckChanges;
 
             speaker = this;
+
+
+            MainWindow.AudioPropMiaEl.Volume = MainWindow.VolumeControllPropSlr.Maximum;
         }
 
 
@@ -198,9 +208,12 @@ namespace Text_reader
 
         private  void PlayPropSlr_ValueChanged(object sender, RoutedEventArgs e)
         {
-            MainWindow.AudioPropMiaEl.Position =TimeSpan.FromSeconds( MainWindow.PlayPropSlr.Value);
+            MainWindow.AudioPropMiaEl.Position = TimeSpan.FromSeconds( MainWindow.PlayPropSlr.Value);
         }
-
+        private static void VolumeControllSlr_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            MainWindow.AudioPropMiaEl.Volume = MainWindow.VolumeControllPropSlr.Value / 100.0;
+        }
 
         private  void AudioMiaEl_MediaEnded(object sender, RoutedEventArgs e)
         {

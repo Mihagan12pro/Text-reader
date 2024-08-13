@@ -114,6 +114,8 @@ namespace Text_reader
                         case "VolumeControllSlr":
                             VolumeControllPropSlr = VolumeControllSlr;
 
+                            
+
                             VolumeControllPropSlr.IsEnabled = false;
                             break;
                     }
@@ -272,60 +274,6 @@ namespace Text_reader
                 SpeedControlLbl.Content = Convert.ToString(content);
             }
         }
-
-
-
-
-        //private void Synth_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
-        //{
-        //    PlayPauseResumeBtn.Content = "Play";
-        //}
-
-
-
-        //private void PlayPauseResumeBtn_Click(object sender, RoutedEventArgs e)
-        //{
-
-
-
-
-
-
-        //    if (isPaused)
-        //    {
-        //        synth.Resume();
-        //        isPaused = false;
-        //        PlayPauseResumeBtn.Content = "Pause";
-
-
-        //    }
-        //    else
-        //    {
-        //        if (synth.State == SynthesizerState.Speaking)
-        //        {
-        //            synth.Pause();
-        //            isPaused = true;
-        //            PlayPauseResumeBtn.Content = "Resume";
-        //        }
-        //        else
-        //        {
-        //            if (PlayPauseResumeBtn.Content == "Play")
-        //            {
-        //                currentTextForSpeack = AddTextForReadingTb.Text;
-
-        //                var a = currentTextForSpeack;
-        //            }
-
-
-
-
-        //            synth.SetOutputToDefaultAudioDevice();
-        //            synth.SpeakAsync(AddTextForReadingTb.Text);
-        //            PlayPauseResumeBtn.Content = "Pause";
-        //        }
-        //    }
-        //}
-
 
 
     }
