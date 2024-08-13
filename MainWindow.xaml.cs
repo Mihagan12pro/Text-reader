@@ -251,7 +251,9 @@ namespace Text_reader
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
+            SettingsWindow settingsWindow = new SettingsWindow();
 
+            settingsWindow.ShowDialog();
         }
 
         private void MinimizeSpeedBtn_Click(object sender, RoutedEventArgs e)
