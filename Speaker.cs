@@ -40,7 +40,7 @@ namespace Text_reader
             MainWindow.PlayPauseResumePropBtn.Click -= MainWindow.PlayPauseResumeBtn_Click;
 
          
-            MainWindow.PlayPauseResumePropBtn.Click += PausePlay_Click;
+         
 
             
 
@@ -51,22 +51,24 @@ namespace Text_reader
 
             originPath = MainWindow.TextFilesPathPropTb.Text;
 
-            MainWindow.SaveInMp3PropBtn.Click += SaveInMp3PropBtn_Click;
+         
 
            
 
             AddAudioToAudioMiaEl();
 
-
+            MainWindow.SaveInMp3PropBtn.Click += SaveInMp3PropBtn_Click;
             MainWindow.TextFilesPathPropTb.TextChanged += TextFilesPathTb_PathChanged;
+            MainWindow.PlayPauseResumePropBtn.Click += PausePlay_Click;
+            MainWindow.AudioPropMiaEl.MediaEnded += AudioMiaEl_MediaEnded;
+            MainWindow.PlayPropSlr.ValueChanged += PlayPropSlr_ValueChanged;
+            MainWindow.AddTextForReadingPropTb.TextChanged += AddTextForReadingTb_CheckChanges;
+
+
+
 
             MainWindow.AudioPropMiaEl.Play();
 
-            MainWindow.AudioPropMiaEl.MediaEnded += AudioMiaEl_MediaEnded;
-
-            MainWindow.PlayPropSlr.ValueChanged += PlayPropSlr_ValueChanged;
-
-            MainWindow.AddTextForReadingPropTb.TextChanged += AddTextForReadingTb_CheckChanges;
 
             speaker = this;
 
@@ -78,18 +80,24 @@ namespace Text_reader
 
 
         private  void TextFilesPathTb_PathChanged(object sender, RoutedEventArgs e)
-        {
-            if (originPath != MainWindow.TextFilesPathPropTb.Text && File.Exists(MainWindow.TextFilesPathPropTb.Text))
+        {   if (!isPlay)
             {
-                isPlay = false;
-                AddAudioToAudioMiaEl();
-                MainWindow.PlayPauseResumePropBtn.Content = "Play";
+                if (originPath != MainWindow.TextFilesPathPropTb.Text && File.Exists(MainWindow.TextFilesPathPropTb.Text))
+                {
+                    speaker = null;
 
-                MainWindow.AddTextForReadingPropTb.Text = File.ReadAllText(MainWindow.TextFilesPathPropTb.Text);
+                    speaker = new Speaker();
 
-                MainWindow.AudioPropMiaEl.Stop();
+                    //isPlay = false;
+                    AddAudioToAudioMiaEl();
+                    MainWindow.PlayPauseResumePropBtn.Content = "Play";
+
+                    MainWindow.AddTextForReadingPropTb.Text = File.ReadAllText(MainWindow.TextFilesPathPropTb.Text);
+
+                    MainWindow.AudioPropMiaEl.Stop();
 
 
+                }
             }
         }
 
@@ -98,7 +106,8 @@ namespace Text_reader
            
 
 
-            if(File.Exists("output.wav")){
+            if(File.Exists("output.wav"))
+            {
 
                 File.Delete("output.wav");
 
@@ -126,37 +135,38 @@ namespace Text_reader
 
         private void AddTextForReadingTb_CheckChanges(object sender, RoutedEventArgs e)
         {
-            if(MainWindow.AddTextForReadingPropTb.Text != originText)
+            if(MainWindow.AddTextForReadingPropTb.Text != originText && !isPlay)
             {
-                MainWindow.PlayPauseResumePropBtn.Content = "Play";
-                MainWindow.PlayPropSlr.Value = 0;
-                MainWindow.AudioPropMiaEl.Stop();
 
-                isPlay = false;
+                DestructSpeaker();
 
-                if (MainWindow.AddTextForReadingPropTb.Text !="")
-                {
+
+                //MainWindow.PlayPauseResumePropBtn.Content = "Play";
+                //MainWindow.PlayPropSlr.Value = 0;
+                //MainWindow.AudioPropMiaEl.Stop();
+
+                //isPlay = false;
+
+                //if (MainWindow.AddTextForReadingPropTb.Text !="")
+                //{
                     
 
 
-                    AddAudioToAudioMiaEl();
+                //    AddAudioToAudioMiaEl();
 
-                    originText = MainWindow.AddTextForReadingPropTb.Text;
+                //    originText = MainWindow.AddTextForReadingPropTb.Text;
 
-                    return;
+                //    return;
                     
-                }
-                MainWindow.AddTextForReadingPropTb.TextChanged += MainWindow.AddTextForReadingTb_TextAdded;
-                MainWindow.TextFilesPathPropTb.TextChanged += MainWindow.TextFilesPathTb_TextChanged;
-                MainWindow.PlayPauseResumePropBtn.Click += MainWindow.PlayPauseResumeBtn_Click;
+                //}
+                //MainWindow.AddTextForReadingPropTb.TextChanged += MainWindow.AddTextForReadingTb_TextAdded;
+                //MainWindow.TextFilesPathPropTb.TextChanged += MainWindow.TextFilesPathTb_TextChanged;
+                //MainWindow.PlayPauseResumePropBtn.Click += MainWindow.PlayPauseResumeBtn_Click;
 
 
-                MainWindow.PlayPauseResumePropBtn.IsEnabled = false;
-                MainWindow.PlayPropSlr.IsEnabled = false;
-                MainWindow.SaveInMp3PropBtn.IsEnabled = false;
-
-
-
+                //MainWindow.PlayPauseResumePropBtn.IsEnabled = false;
+                //MainWindow.PlayPropSlr.IsEnabled = false;
+                //MainWindow.SaveInMp3PropBtn.IsEnabled = false;
 
 
 
@@ -164,30 +174,33 @@ namespace Text_reader
 
 
 
-                MainWindow.PlayPauseResumePropBtn.Click -= PausePlay_Click;
+
+
+
+                //MainWindow.PlayPauseResumePropBtn.Click -= PausePlay_Click;
 
                
 
-                MainWindow.SaveInMp3PropBtn.Click -= SaveInMp3PropBtn_Click;
+                //MainWindow.SaveInMp3PropBtn.Click -= SaveInMp3PropBtn_Click;
 
-                MainWindow.AudioPropMiaEl.Source = null;
+                //MainWindow.AudioPropMiaEl.Source = null;
 
                 
-                if (File.Exists("output.wav"))
-                {
-                    File.Delete("output.wav");
-                }
+                //if (File.Exists("output.wav"))
+                //{
+                //    File.Delete("output.wav");
+                //}
 
 
               
 
-                MainWindow.AudioPropMiaEl.MediaEnded -= AudioMiaEl_MediaEnded;
+                //MainWindow.AudioPropMiaEl.MediaEnded -= AudioMiaEl_MediaEnded;
 
-                MainWindow.PlayPropSlr.ValueChanged -= PlayPropSlr_ValueChanged;
+                //MainWindow.PlayPropSlr.ValueChanged -= PlayPropSlr_ValueChanged;
 
-                MainWindow.AddTextForReadingPropTb.TextChanged -= AddTextForReadingTb_CheckChanges;
+                //MainWindow.AddTextForReadingPropTb.TextChanged -= AddTextForReadingTb_CheckChanges;
 
-                speaker = null;
+                //speaker = null;
             }
         }
        
@@ -273,6 +286,34 @@ namespace Text_reader
                 File.Move("output.mp3",saveMP3.FileName);
                 
             }
+
+            
+        }
+
+        private void DestructSpeaker()
+        {
+            MainWindow.SaveInMp3PropBtn.Click -= SaveInMp3PropBtn_Click;
+            MainWindow.TextFilesPathPropTb.TextChanged -= TextFilesPathTb_PathChanged;
+            MainWindow.PlayPauseResumePropBtn.Click -= PausePlay_Click;
+            MainWindow.AudioPropMiaEl.MediaEnded -= AudioMiaEl_MediaEnded;
+            MainWindow.PlayPropSlr.ValueChanged -= PlayPropSlr_ValueChanged;
+            MainWindow.AddTextForReadingPropTb.TextChanged -= AddTextForReadingTb_CheckChanges;
+
+
+
+
+            MainWindow.SaveInMp3PropBtn.IsEnabled = false;
+            MainWindow.VolumeControllPropSlr.IsEnabled = false;
+            MainWindow.MaximizeSpeedPropBtn.IsEnabled = false;
+            MainWindow.MinimizeSpeedPropBtn.IsEnabled = false;
+
+
+
+            MainWindow.AddTextForReadingPropTb.TextChanged += MainWindow.AddTextForReadingTb_TextAdded;
+            MainWindow.TextFilesPathPropTb.TextChanged += MainWindow.TextFilesPathTb_TextChanged;
+            MainWindow.PlayPauseResumePropBtn.Click += MainWindow.PlayPauseResumeBtn_Click;
+
+            speaker = null;
         }
 
     }
