@@ -70,6 +70,8 @@ namespace Text_reader
 
 
             MainWindow.AudioPropMiaEl.Volume = MainWindow.VolumeControllPropSlr.Maximum;
+
+            MainWindow.VolumeValuePropTb.Text = Convert.ToString(MainWindow.AudioPropMiaEl.Volume) + "%";
         }
 
 
@@ -212,7 +214,21 @@ namespace Text_reader
         }
         private static void VolumeControllSlr_ValueChanged(object sender, RoutedEventArgs e)
         {
+            if (MainWindow.VolumeControllPropSlr.Value<=1)
+            {
+                MainWindow.VolumeControllPropSlr.Value = 0;
+
+                MainWindow.AudioPropMiaEl.Volume = 0;
+
+                MainWindow.VolumeValuePropTb.Text = "0%";
+
+                return;
+            }
+
+
             MainWindow.AudioPropMiaEl.Volume = MainWindow.VolumeControllPropSlr.Value / 100.0;
+
+            MainWindow.VolumeValuePropTb.Text = Convert.ToString(Math.Round( MainWindow.VolumeControllPropSlr.Value,0)) + "%";
         }
 
         private  void AudioMiaEl_MediaEnded(object sender, RoutedEventArgs e)

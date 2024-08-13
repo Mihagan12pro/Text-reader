@@ -37,7 +37,7 @@ namespace Text_reader
 
 
 
-
+        public static TextBox VolumeValuePropTb { get; private set; }
 
         public static Button MinimizeSpeedPropBtn { get; private set; }
         public static Button MaximizeSpeedPropBtn { get; private set; }
@@ -131,6 +131,9 @@ namespace Text_reader
                             break;
                         case "TextFilesPathTb":
                             TextFilesPathPropTb = TextFilesPathTb;
+                            break;
+                        case "VolumeValueTb":
+                            VolumeValuePropTb = VolumeValueTb;
                             break;
                     }
                 }
