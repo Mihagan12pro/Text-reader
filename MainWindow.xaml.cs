@@ -30,13 +30,6 @@ namespace Text_reader
 
         public static MediaElement AudioPropMiaEl { get; private set; }
 
-
-
-
-
-
-
-
         public static TextBox VolumeValuePropTb { get; private set; }
 
         public static Button MinimizeSpeedPropBtn { get; private set; }
@@ -44,7 +37,7 @@ namespace Text_reader
 
         public static Slider VolumeControllPropSlr { get; private set; }
 
-        public static Label SpeedControlPropLbl { get; private set; }
+        public static TextBox SpeedControlPropTb { get; private set; }
 
 
         public MainWindow()
@@ -54,7 +47,7 @@ namespace Text_reader
 
             timer = new DispatcherTimer();
 
-            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Interval = TimeSpan.FromMilliseconds(1);
 
             timer.Tick += new EventHandler(Timer_Tick);
 
@@ -135,6 +128,14 @@ namespace Text_reader
                         case "VolumeValueTb":
                             VolumeValuePropTb = VolumeValueTb;
                             break;
+                        case "SpeedControlTb":
+                            SpeedControlPropTb = SpeedControlTb;
+
+                            SpeedControlTb.IsEnabled = false;
+
+                            SpeedControlTb.TextChanged += SpeedControlTb_TextChanged; ;
+
+                            break;
                     }
                 }
 
@@ -158,14 +159,6 @@ namespace Text_reader
                 {
                     Label label = (Label)ui;
 
-                    switch(label.Name)
-                    {
-                        case "SpeedControlLbl":
-                            SpeedControlPropLbl = SpeedControlLbl;
-
-                            SpeedControlLbl.IsEnabled = false;
-                            break;
-                    }
                 }
             }
 
@@ -174,6 +167,8 @@ namespace Text_reader
             TextFilesPathTb.TextChanged += TextFilesPathTb_TextChanged;
             AddTextForReadingTb.TextChanged += AddTextForReadingTb_TextAdded;
             PlayPauseResumeBtn.Click += PlayPauseResumeBtn_Click;
+            MainWindow.VolumeControllPropSlr.ValueChanged += VolumeControllSlr_ValueChanged;
+
 
             AudioPropMiaEl.MediaOpened += AudioPropMiaEl_MediaOpened;
 
@@ -183,6 +178,11 @@ namespace Text_reader
 
 
 
+        }
+
+        private void SpeedControlTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AudioMiaEl.SpeedRatio = Convert.ToDouble(SpeedControlTb.Text);
         }
 
 
@@ -256,28 +256,45 @@ namespace Text_reader
 
         private void MinimizeSpeedBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToDouble(SpeedControlLbl.Content)>0.5)
+            if (Convert.ToDouble(SpeedControlTb.Text)>0.5)
             {
-                double content = Convert.ToDouble(SpeedControlLbl.Content);
+                double content = Convert.ToDouble(SpeedControlTb.Text);
 
                 content -= 0.5;
 
-                SpeedControlLbl.Content = Convert.ToString( content);
+                SpeedControlTb.Text = Convert.ToString( content);
             }
         }
 
         private void MaximizeSpeedBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToDouble(SpeedControlLbl.Content) < 2.5)
+            if (Convert.ToDouble(SpeedControlTb.Text) < 2.0)
             {
-                double content = Convert.ToDouble(SpeedControlLbl.Content);
+                double content = Convert.ToDouble(SpeedControlTb.Text);
 
                 content += 0.5;
 
-                SpeedControlLbl.Content = Convert.ToString(content);
+                SpeedControlTb.Text = Convert.ToString(content);
             }
         }
+        private static void VolumeControllSlr_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            if (MainWindow.VolumeControllPropSlr.Value <= 1)
+            {
+                MainWindow.VolumeControllPropSlr.Value = 0;
 
+                MainWindow.AudioPropMiaEl.Volume = 0;
+
+                MainWindow.VolumeValuePropTb.Text = "0%";
+
+                return;
+            }
+
+
+            MainWindow.AudioPropMiaEl.Volume = MainWindow.VolumeControllPropSlr.Value / 100.0;
+
+            MainWindow.VolumeValuePropTb.Text = Convert.ToString(Math.Round(MainWindow.VolumeControllPropSlr.Value, 0)) + "%";
+        }
 
     }
 }

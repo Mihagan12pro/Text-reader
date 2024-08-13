@@ -13,15 +13,15 @@
             <TextBox Name="TextFilesPathTb" HorizontalAlignment="Left" Margin="144,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" Height="20" />
             <Button Name="SettingsBtn" Content="⚙️" HorizontalAlignment="Left" Margin="304,0,0,0" VerticalAlignment="Top" Height="21" Width="23" Click="SettingsBtn_Click"/>
 
-            <Button Name="PlayPauseResumeBtn" IsEnabled="False"  Content="Play" HorizontalAlignment="Left" Margin="19,130,0,0" VerticalAlignment="Top" Width="52" />
-            <Slider Name="PlaySlr" IsEnabled="False"  Margin="76,131,15,26"></Slider>
+            <Button Name="PlayPauseResumeBtn" IsEnabled="False"  Content="Play" HorizontalAlignment="Left" Margin="19,130,0,0" VerticalAlignment="Top" Width="55" />
+            <Slider Name="PlaySlr" IsEnabled="False"  Margin="80,131,15,26"></Slider>
             <Button Content="Save audio in mp3" IsEnabled="False"  Name="SaveInMp3Btn" HorizontalAlignment="Left" Margin="89,153,0,0" VerticalAlignment="Top" Height="19" Width="106" />
             <MediaElement Name="AudioMiaEl"  HorizontalAlignment="Left" Height="62" Margin="308,95,0,0" VerticalAlignment="Top" Width="9"/>
 
             <Slider HorizontalAlignment="Left" Name="VolumeControllSlr" Maximum="100" Minimum="1" Value="100" Margin="200,153,0,0" VerticalAlignment="Top" Width="75"/>
-            <Label Background="#a3ffff" BorderBrush="#94f7f7" BorderThickness="0.5" HorizontalAlignment="Left" FontSize="8" Name="SpeedControlLbl" Margin="36,153,0,0"  Content="1" VerticalAlignment="Top" Width="14" Height="22"/>
+            <TextBox Background="#a3ffff" FontWeight="Bold" BorderBrush="#94f7f7" BorderThickness="0.5" HorizontalAlignment="Left" FontSize="7" Name="SpeedControlTb" Margin="36,153,0,0"  Text="1" VerticalAlignment="Top" Width="22" Height="22"/>
             <Button Name="MinimizeSpeedBtn" Content="&lt;=" FontSize="8" HorizontalAlignment="Left" Margin="19,153,0,0" VerticalAlignment="Top" Width="17" Height="22" Click="MinimizeSpeedBtn_Click"/>
-            <Button Content="=>" Name="MaximizeSpeedBtn" HorizontalAlignment="Left" FontSize="8" Margin="50,153,0,0" VerticalAlignment="Top" Width="17" Height="22" Click="MaximizeSpeedBtn_Click"/>
+            <Button Content="=>" Name="MaximizeSpeedBtn" HorizontalAlignment="Left" FontSize="8" Margin="58,153,0,0" VerticalAlignment="Top" Width="17" Height="22" Click="MaximizeSpeedBtn_Click"/>
             <TextBox Name="VolumeValueTb" HorizontalAlignment="Left" Margin="281,153,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" FontSize="7" VerticalAlignment="Top" Width="28" Height="18"/>
 
 
