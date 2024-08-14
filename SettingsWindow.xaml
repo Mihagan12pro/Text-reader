@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Text_reader"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800">
+        Title="Settings" Height="450" Width="400" ResizeMode="NoResize" Background="#e9f7ec">
     <Grid>
-        
+        <Label Content="Set volume" HorizontalAlignment="Left" Margin="17,61,0,0" Background="White" VerticalAlignment="Top" Width="72" Height="28"/>
+
     </Grid>
 </Window>
