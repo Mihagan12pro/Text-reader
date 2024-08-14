@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Speech.Synthesis;
 namespace Text_reader
 {
     /// <summary>
@@ -22,6 +22,25 @@ namespace Text_reader
         public SettingsWindow()
         {
             InitializeComponent();
+
+
+
+            for(int i=0;i<101;i++)
+            {
+                SetVolumeCB.Items.Add(Convert.ToString(i));
+            }
+
+            for(double i=0.5;i<2.5;i+=0.5)
+            {
+                SetSpeedCB.Items.Add(Convert.ToString(i));
+            }
+
+
+            SpeechSynthesizer speech = new SpeechSynthesizer();
+            foreach(var voice in speech.GetInstalledVoices())
+            {
+                SetVoiceCB.Items.Add(voice.VoiceInfo.Name); 
+            }
         }
     }
 }
