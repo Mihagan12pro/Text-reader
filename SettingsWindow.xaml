@@ -5,9 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Text_reader"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="400" ResizeMode="NoResize" Background="#e9f7ec">
+        Title="Settings" Height="380" Width="400" ResizeMode="NoResize" Background="#e9f7ec">
     <Grid>
-        <Label Content="Set volume" HorizontalAlignment="Left" Margin="17,61,0,0" Background="White" VerticalAlignment="Top" Width="72" Height="28"/>
+        <Label Name="SetVolumeLb" Content="Set volume" HorizontalAlignment="Left" Margin="20,61,0,0" Background="White" VerticalAlignment="Top" Width="70" Height="28"/>
+        <ComboBox Name="SetVolumeCB" HorizontalAlignment="Left" Margin="90,61,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
+
+        <Label Name="SetSpeedLl" Content="Set speed" Background="White" HorizontalAlignment="Left" Margin="20,109,0,0" VerticalAlignment="Top" Width="70"/>
+        <ComboBox Name="SetSpeedCB" HorizontalAlignment="Left" Margin="90,109,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
+
+        <Label Name="SetVoiceLl" Content="Set voice" Background="White" HorizontalAlignment="Left" Margin="21,160,0,0" VerticalAlignment="Top" Width="68"/>
+        <ComboBox Name="SetVoiceCB" HorizontalAlignment="Left" Margin="89,160,0,0" VerticalAlignment="Top" Width="121" Height="26"/>
+
+        <Button Name="AcceptSettingsBtn" Content=" Accept settings for current session" HorizontalAlignment="Left" Margin="79,226,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button Name="AbortSettingsBtn" Content="Abort these settings" HorizontalAlignment="Left" Margin="120,256,0,0" VerticalAlignment="Top" Width="120" Height="20"/>
+        <Button Name="AbortDefaultBtn" Content="Abort default settings" HorizontalAlignment="Left" Margin="120,284,0,0" VerticalAlignment="Top" Height="20" Width="120"/>
+        <Button Name="EditDefaultBtn" Content="Edit default settings" HorizontalAlignment="Left" Margin="119,311,0,0" VerticalAlignment="Top" Width="121" Height="20"/>
 
     </Grid>
 </Window>
