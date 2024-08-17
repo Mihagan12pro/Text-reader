@@ -12,6 +12,9 @@ using static System.Net.Mime.MediaTypeNames;
 using NAudio.Wave;
 using NAudio.Lame;
 using Microsoft.Win32;
+
+
+
 namespace Text_reader
 {
     internal class Speaker

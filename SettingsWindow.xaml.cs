@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Speech.Synthesis;
+
+
+
+using Database;
+//using System.Data.SQLite;
 namespace Text_reader
 {
     /// <summary>
@@ -41,6 +46,13 @@ namespace Text_reader
             {
                 SetVoiceCB.Items.Add(voice.VoiceInfo.Name); 
             }
+
+
+            BaseDefaultTable baseDefaultTable = new BaseDefaultTable();
+
+
+            //var a = defaultTable.GetVoiceSettings();
+            //var b = a;
         }
     }
 }
