@@ -44,8 +44,6 @@
     <None Update="runtimes\win-x64\native\e_sqlite3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="values .db" />
-    <None Include="values.sqlite3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -138,6 +136,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database operations\DatabaseTable.cs" />
+    <Compile Include="Database operations\SettingBaseTable.cs" />
+    <Compile Include="Database operations\SettingsTable.cs" />
     <Compile Include="Database operations\ValuesTable.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>

@@ -36,11 +36,25 @@ namespace Text_reader
 
             foreach(var i in voicesTable.GetData())
             {
-                //voicesList.Add(i.ToString());
                 SetVoiceCB.Items.Add(i.ToString());
             }
 
+            ValuesTable ratiosTable = new ValuesTable("ratios");
 
+            foreach(var i in ratiosTable.GetData())
+            {
+                SetRatioCB.Items.Add(i.ToString());
+            }
+
+            ValuesTable volumesTable = new ValuesTable("volumes");
+
+            foreach(var i in volumesTable.GetData())
+            {
+                SetVolumeCB.Items.Add(i.ToString());
+            }
+
+            SettingBaseTable baseTable = new SettingBaseTable();
+            
 
 
             

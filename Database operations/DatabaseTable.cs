@@ -38,18 +38,6 @@ namespace Text_reader.Database_operations
 
                 }
 
-                //connection.Open();
-
-
-                //command.Connection = connection;
-                //command.CommandText = "SELECT * FROM "+TableName;
-
-                //data = command.ExecuteNonQuery();
-
-                //connection.Close();
-
-
-
             }
             connection.Close();
 
