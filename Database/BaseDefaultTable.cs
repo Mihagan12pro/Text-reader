@@ -52,41 +52,7 @@ namespace Database
             connection.Close();
         }
 
-        //public BaseDefaultTable() 
-        //{
-
-        //    TableName = "base_settings";
-
-
-
-        //    connection.Open();
-
-        //    query = "CREATE TABLE IF NOT EXISTS " + TableName + " (TEXT voice,INTEGER volume,REAL ratio)";
-
-        //    SQLiteCommand command = new SQLiteCommand(query, connection);
-
-        //    command.ExecuteNonQuery();
-
-
-
-
-
-        //    connection.Close();
-
-
-
-
-        //}
-
-        //public virtual void InsertDataToDotherTable()
-        //{
-
-        //    connection.Open();
-
-        //    query = "INSERT INTO default_settings VALUE ()";
-
-
-        //}
+        
 
 
 
