@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    internal class BaseDefaultTable : MajorTable
+    internal class BaseDefaultTable : SettingsMajorTable
     {
         protected override string SetTableName()
         {
@@ -17,37 +17,72 @@ namespace Database
         {
 
         }
+        public override object GetData()
 
+        {
+            connection.Open();
+
+            query = "SELECT * FROM " + TableName;
+
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            var a = command.ExecuteNonQuery();
+            return a;
+        }
         public BaseDefaultTable()
         {
             connection.Open();
 
+
+            query = "CREATE TABLE IF NOT EXISTS "+TableName+"(voice TEXT, ratio REAL, volume INTEGER)";
+
+            SQLiteCommand command1 = new SQLiteCommand(query,connection);
+
+            command1.ExecuteNonQuery();
+
             query = "SELECT COUNT (*) FROM " + TableName;
-
-
-            SQLiteCommand command = new SQLiteCommand(query,connection);
-
-            int count = Convert.ToInt32(command.ExecuteScalar());
-
-            if(count > 1)
+           
+           using (SQLiteCommand command2 = new SQLiteCommand(query,connection))
             {
-                query = "DELETE FROM "+TableName;
+               int count  =   command2.ExecuteNonQuery();
 
-                SQLiteCommand command2 = new SQLiteCommand(query,connection);
+                if (count<1)
+                {
+                    query = "INSERT INTO "+TableName+"VALUES ( 'Microsoft Irina Desktop',1.0,100 )";
 
-                command2.ExecuteNonQuery();
+                    SQLiteCommand command3 = new SQLiteCommand(query,connection);
 
+                    command3.ExecuteNonQuery();
+                }
             }
-            
-            if (count != 1)
-            {
-                query = "INSERT INTO "+TableName+ " VALUES ( 'Microsoft Irina Desktop',100,1 )";
 
 
-                SQLiteCommand command3 = new SQLiteCommand(query,connection);
+            //query = "SELECT COUNT (*) FROM " + TableName;
 
-                command3.ExecuteNonQuery();
-            }
+
+            //SQLiteCommand command = new SQLiteCommand(query,connection);
+
+            //int count = Convert.ToInt32(command.ExecuteScalar());
+
+            //if(count > 1)
+            //{
+            //    query = "DELETE FROM "+TableName;
+
+            //    SQLiteCommand command2 = new SQLiteCommand(query,connection);
+
+            //    command2.ExecuteNonQuery();
+
+            //}
+
+            //if (count != 1)
+            //{
+            //    query = "INSERT INTO "+TableName+ " VALUES ( 'Microsoft Irina Desktop',100,1 )";
+
+
+            //    SQLiteCommand command3 = new SQLiteCommand(query,connection);
+
+            //    command3.ExecuteNonQuery();
+            //}
 
             connection.Close();
         }

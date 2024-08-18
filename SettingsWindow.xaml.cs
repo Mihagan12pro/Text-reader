@@ -12,10 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Speech.Synthesis;
+using Text_reader.Database_operations;
 
 
 
-using Database;
+//using Database;
+//using Text_reader.Database;
 //using System.Data.SQLite;
 namespace Text_reader
 {
@@ -28,29 +30,74 @@ namespace Text_reader
         {
             InitializeComponent();
 
+            ValuesTable voicesTable = new ValuesTable("voices");
 
+           // List<string> voicesList = new List<string>();
 
-            for(int i=0;i<101;i++)
+            foreach(var i in voicesTable.GetData())
             {
-                SetVolumeCB.Items.Add(Convert.ToString(i));
-            }
-
-            for(double i=0.5;i<2.5;i+=0.5)
-            {
-                SetSpeedCB.Items.Add(Convert.ToString(i));
-            }
-
-
-            SpeechSynthesizer speech = new SpeechSynthesizer();
-            foreach(var voice in speech.GetInstalledVoices())
-            {
-                SetVoiceCB.Items.Add(voice.VoiceInfo.Name); 
+                //voicesList.Add(i.ToString());
+                SetVoiceCB.Items.Add(i.ToString());
             }
 
 
-            BaseDefaultTable baseDefaultTable = new BaseDefaultTable();
 
 
+            
+
+           // ValueTable ratioTable = new ValueTable("ratio_settings","ratio");
+            //ValueTable volumeTable = new ValueTable("volume_settings");
+            //ValueTable voiceTable = new ValueTable("voice_settings");
+
+            //object[]  ratios = (object[]) ratioTable.GetData();
+            //var volumes = (object[])volumeTable.GetData();
+            //var voices = (object[])voiceTable.GetData();
+
+            //var a = ratioTable.GetData();
+            //var b = a;
+
+            //foreach (var voice in voices)
+            //{
+            //    SetVoiceCB.Items.Add(voice);
+            //}
+            //foreach(var  volume in volumes)
+            //{
+            //    SetVolumeCB.Items.Add(volume);
+            //}
+            //foreach(var ratio in  ratios)
+            //{
+            //    SetRatioCB.Items.Add(ratio);
+            //}
+
+            //foreach(var vol in (int[])volumeTable.GetData())
+            //{
+            //    SetVolumeCB.Items.Add(Convert.ToString(vol));
+            //}
+
+            //for(double i=0.5;i<2.5;i+=0.5)
+            //{
+            //    SetSpeedCB.Items.Add(Convert.ToString(i));
+            //}
+
+            //foreach(var rat in (double[])ratioTable.GetData())
+            //{
+            //    SetRatioCB.Items.Add(Convert.ToString(rat));
+            //}
+
+
+
+
+            //SpeechSynthesizer speech = new SpeechSynthesizer();
+            //foreach(var voice in speech.GetInstalledVoices())
+            //{
+            //    SetVoiceCB.Items.Add(voice.VoiceInfo.Name); 
+            //}
+
+
+           // BaseDefaultTable baseDefaultTable = new BaseDefaultTable();
+
+            //var c = baseDefaultTable.GetData();
+            //var c2 = c;
             //var a = defaultTable.GetVoiceSettings();
             //var b = a;
         }

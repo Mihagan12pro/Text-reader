@@ -44,6 +44,8 @@
     <None Update="runtimes\win-x64\native\e_sqlite3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="values .db" />
+    <None Include="values.sqlite3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -135,11 +137,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database\BaseDefaultTable.cs" />
-    <Compile Include="Database\CurrentTable.cs" />
-    <Compile Include="Database\DefaultTable.cs" />
-    <Compile Include="Database\MajorTable.cs" />
-    <Compile Include="Database\MinorTable.cs" />
+    <Compile Include="Database operations\DatabaseTable.cs" />
+    <Compile Include="Database operations\ValuesTable.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -180,7 +179,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Database\values.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    internal class CurrentTable :MinorTable
+    internal class CurrentTable :SettingsMinorTable
     {
 
-       
+       public override object GetData()
+        {
+            return null;
+        }
         //public override void CreateTable()
         //{
         //    connection.Open();

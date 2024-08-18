@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    internal abstract class MajorTable : MinorTable
+    internal abstract class SettingsMajorTable : SettingsMinorTable
     {
 
         protected abstract string SetTableName();
 
 
-        public MajorTable()
+        public SettingsMajorTable()
         {
             TableName = SetTableName();
 

@@ -8,13 +8,13 @@
         Title="Settings" Height="380" Width="400" ResizeMode="NoResize" Background="#e9f7ec">
     <Grid>
         <Label Name="SetVolumeLb" Content="Set volume" HorizontalAlignment="Left" Margin="20,61,0,0" Background="White" VerticalAlignment="Top" Width="70" Height="28"/>
-        <ComboBox Name="SetVolumeCB" HorizontalAlignment="Left" Margin="90,61,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
+        <ComboBox Name="SetVolumeCB" HorizontalAlignment="Left" Margin="91,61,0,0" VerticalAlignment="Top" Width="194" Height="28"/>
 
-        <Label Name="SetSpeedLl" Content="Set speed" Background="White" HorizontalAlignment="Left" Margin="20,109,0,0" VerticalAlignment="Top" Width="70"/>
-        <ComboBox Name="SetSpeedCB" HorizontalAlignment="Left" Margin="90,109,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
+        <Label Name="SetRatioLl" Content="Set ratio" Background="White" HorizontalAlignment="Left" Margin="20,109,0,0" VerticalAlignment="Top" Width="70"/>
+        <ComboBox Name="SetRatioCB" HorizontalAlignment="Left" Margin="91,109,0,0" VerticalAlignment="Top" Width="194" Height="26"/>
 
         <Label Name="SetVoiceLl" Content="Set voice" Background="White" HorizontalAlignment="Left" Margin="21,160,0,0" VerticalAlignment="Top" Width="68"/>
-        <ComboBox Name="SetVoiceCB" HorizontalAlignment="Left" Margin="89,160,0,0" VerticalAlignment="Top" Width="121" Height="26"/>
+        <ComboBox Name="SetVoiceCB" HorizontalAlignment="Left" Margin="89,160,0,0" VerticalAlignment="Top" Width="196" Height="26"/>
 
         <Button Name="AcceptSettingsBtn" Content=" Accept settings for current session" HorizontalAlignment="Left" Margin="79,226,0,0" VerticalAlignment="Top" Width="200"/>
         <Button Name="AbortSettingsBtn" Content="Abort these settings" HorizontalAlignment="Left" Margin="120,256,0,0" VerticalAlignment="Top" Width="120" Height="20"/>

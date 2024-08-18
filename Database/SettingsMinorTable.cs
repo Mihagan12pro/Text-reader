@@ -4,18 +4,17 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using Text_reader.Database;
 
 namespace Database
 {
-    internal abstract class MinorTable
+    internal abstract class SettingsMinorTable: AbstractTable
     {
-        protected string query;
-
-        
-        protected SQLiteConnection connection;
+      
 
         protected readonly string databaseFields;
-        protected readonly string DatabaseTittle;
+       
 
 
         protected string voice;
@@ -23,13 +22,13 @@ namespace Database
         protected double ratio;
 
 
-        private MinorTable table;
+        private SettingsMinorTable table;
 
-        public string TableName { get; protected set; }
+      
 
 
 
-        public MinorTable()
+        public SettingsMinorTable()
         {
 
             databaseFields = "(voice TEXT, volume INTENGER, ratio REAL)";
@@ -41,10 +40,7 @@ namespace Database
 
            
         }
-        public void Destructor()
-        {
-            table = null;
-        }
+
        // public abstract void CreateTable();
 
         public void GetTableItems()
@@ -60,6 +56,7 @@ namespace Database
             connection.Close();
 
         }
+
        
     }
 }

@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    internal class DefaultTable:MajorTable
+    internal class DefaultTable:SettingsMajorTable
     {
+        public override object GetData()
+        {
+            return null;
+        }
         public DefaultTable() 
         {
             
