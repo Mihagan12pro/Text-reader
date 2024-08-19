@@ -26,25 +26,26 @@ namespace Text_reader.Database_operations
 
         }
 
-        public  string GetBaseData()
+        public   object GetBaseData()
         {
-            string data;
+            object data=null;
 
             connection.Open();
 
-            using (SQLiteCommand command1 = new SQLiteCommand("SELECT * FROM " +TableName+ " WHERE rowid=0",connection))
+            using (SQLiteCommand command1 = new SQLiteCommand("SELECT * FROM " +TableName+ " LIMIT 1", connection))
             {
                 using(SQLiteDataReader reader = command1.ExecuteReader())
                 {
-                  
-                        data = reader.ToString();
-                    
-                 
+                    while (reader.Read())
+                    {
+                        data = reader.GetValue(0);
+                        return data;
+                    }
                 }
             }
             connection.Close();
 
-            return data;
+          return data;
         }
 
 

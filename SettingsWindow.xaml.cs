@@ -61,7 +61,7 @@ namespace Text_reader
 
         private void Time_Closing(object sender, System.ComponentModel.CancelEventArgs e)//В будущем удалить
         {
-            System.IO.File.Delete("Databases\\settings db\\settings.db");
+            //System.IO.File.Delete("Databases\\settings db\\settings.db");
         }
 
     }
