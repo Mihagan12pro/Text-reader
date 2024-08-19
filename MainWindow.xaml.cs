@@ -253,6 +253,9 @@ namespace Text_reader
         {
             SettingsWindow settingsWindow = new SettingsWindow();
 
+            
+
+
             settingsWindow.ShowDialog();
         }
 

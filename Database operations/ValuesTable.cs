@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 
 namespace Text_reader.Database_operations
@@ -23,6 +24,27 @@ namespace Text_reader.Database_operations
 
 
 
+        }
+
+        public  string GetBaseData()
+        {
+            string data;
+
+            connection.Open();
+
+            using (SQLiteCommand command1 = new SQLiteCommand("SELECT * FROM " +TableName+ " WHERE rowid=0",connection))
+            {
+                using(SQLiteDataReader reader = command1.ExecuteReader())
+                {
+                  
+                        data = reader.ToString();
+                    
+                 
+                }
+            }
+            connection.Close();
+
+            return data;
         }
 
 

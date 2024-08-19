@@ -54,66 +54,17 @@ namespace Text_reader
             }
 
             SettingBaseTable baseTable = new SettingBaseTable();
+
+            this.Closing += Time_Closing; ;
             
-
-
-            
-
-           // ValueTable ratioTable = new ValueTable("ratio_settings","ratio");
-            //ValueTable volumeTable = new ValueTable("volume_settings");
-            //ValueTable voiceTable = new ValueTable("voice_settings");
-
-            //object[]  ratios = (object[]) ratioTable.GetData();
-            //var volumes = (object[])volumeTable.GetData();
-            //var voices = (object[])voiceTable.GetData();
-
-            //var a = ratioTable.GetData();
-            //var b = a;
-
-            //foreach (var voice in voices)
-            //{
-            //    SetVoiceCB.Items.Add(voice);
-            //}
-            //foreach(var  volume in volumes)
-            //{
-            //    SetVolumeCB.Items.Add(volume);
-            //}
-            //foreach(var ratio in  ratios)
-            //{
-            //    SetRatioCB.Items.Add(ratio);
-            //}
-
-            //foreach(var vol in (int[])volumeTable.GetData())
-            //{
-            //    SetVolumeCB.Items.Add(Convert.ToString(vol));
-            //}
-
-            //for(double i=0.5;i<2.5;i+=0.5)
-            //{
-            //    SetSpeedCB.Items.Add(Convert.ToString(i));
-            //}
-
-            //foreach(var rat in (double[])ratioTable.GetData())
-            //{
-            //    SetRatioCB.Items.Add(Convert.ToString(rat));
-            //}
-
-
-
-
-            //SpeechSynthesizer speech = new SpeechSynthesizer();
-            //foreach(var voice in speech.GetInstalledVoices())
-            //{
-            //    SetVoiceCB.Items.Add(voice.VoiceInfo.Name); 
-            //}
-
-
-           // BaseDefaultTable baseDefaultTable = new BaseDefaultTable();
-
-            //var c = baseDefaultTable.GetData();
-            //var c2 = c;
-            //var a = defaultTable.GetVoiceSettings();
-            //var b = a;
         }
+
+        private void Time_Closing(object sender, System.ComponentModel.CancelEventArgs e)//В будущем удалить
+        {
+            System.IO.File.Delete("Databases\\settings db\\settings.db");
+        }
+
     }
+
+
 }
