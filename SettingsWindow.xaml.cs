@@ -53,7 +53,7 @@ namespace Text_reader
                 SetVolumeCB.Items.Add(i.ToString());
             }
 
-            SettingBaseTable baseTable = new SettingBaseTable();
+            SettingsDefaultTable baseTable = new SettingsDefaultTable();
 
             this.Closing += Time_Closing; ;
             

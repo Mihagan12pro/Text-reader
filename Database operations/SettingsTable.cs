@@ -43,27 +43,13 @@ namespace Text_reader.Database_operations
                 var baseRatio = Convert.ToDouble(tableRatio.GetBaseData());
                 var baseVolume = Convert.ToInt32(tableVolume.GetBaseData());
 
-                //var a = baseRatio;
-                //a = baseVoice;
-                //a = baseVolume;
-
-                //using (SQLiteConnection conn2 = new SQLiteConnection("Data Source="+tableVolume.DbName))
-                //{
-                //     conn2.Open();
+     
 
 
                 SQLiteCommand com2 = new SQLiteCommand("INSERT INTO " + TableName + $" (voice,volume,ratio) Values('{baseVoice}',{Convert.ToInt32(baseVolume)},{Convert.ToDouble(baseRatio)})", conn);
 
                 com2.ExecuteNonQuery();
 
-                //conn2.Close();
-                // }
-
-                //}
-
-                //double ratio;
-                //int volume;
-                //string voice;
 
 
 

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Text_reader.Database_operations
 {
-    internal class SettingBaseTable : SettingsTable
+    internal class SettingsDefaultTable : SettingsTable
     {
         FileInfo dbFile;
-        public SettingBaseTable() : base()
+        public SettingsDefaultTable() : base()
         {
 
             TableName = "base";
