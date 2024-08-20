@@ -44,7 +44,7 @@ namespace Text_reader.Database_operations
 
                   
                 }
-                connection.Close();
+               // connection.Close();
 
 
             }
