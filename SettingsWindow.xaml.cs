@@ -24,9 +24,9 @@ namespace Text_reader
     /// <summary>
     /// Логика взаимодействия для SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class ConfigurationsWindow : Window
     {
-        public SettingsWindow()
+        public ConfigurationsWindow()
         {
             InitializeComponent();
 
@@ -34,30 +34,55 @@ namespace Text_reader
 
            // List<string> voicesList = new List<string>();
 
+            List<string> voices = new List<string>();
+            List<int> volumes = new List<int>();
+            List<double> ratios = new List<double>();
+
             foreach(var i in voicesTable.GetData())
             {
-                SetVoiceCB.Items.Add(i.ToString());
-            }
+                //SetVoiceCB.Items.Add(i.ToString());
 
+
+                voices.Add(i.ToString());
+            }
+            
             ValuesTable ratiosTable = new ValuesTable("ratios");
 
             foreach(var i in ratiosTable.GetData())
             {
-                SetRatioCB.Items.Add(i.ToString());
+               // SetRatioCB.Items.Add(i.ToString());
+
+                ratios.Add(Convert.ToDouble(i.ToString()));
             }
 
             ValuesTable volumesTable = new ValuesTable("volumes");
 
             foreach(var i in volumesTable.GetData())
             {
-                SetVolumeCB.Items.Add(i.ToString());
+                // SetVolumeCB.Items.Add(i.ToString());
+
+
+                volumes.Add(Convert.ToInt32(i.ToString()));
             }
+
+
+            voices.Sort();
+            volumes.Sort();
+            ratios.Sort();
+
+            
 
             //SettingsDefaultTable baseTable = new SettingsDefaultTable();
 
             this.Closing += Time_Closing;
 
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
+
+            
+
+            currentTable.AddToCombobox(voices.ConvertAll(item => (object)item), SetVoiceCB);
+            currentTable.AddToCombobox(volumes.ConvertAll(item => (object)item), SetVolumeCB);
+            currentTable.AddToCombobox(ratios.ConvertAll(item => (object)item), SetRatioCB);
             
         }
 

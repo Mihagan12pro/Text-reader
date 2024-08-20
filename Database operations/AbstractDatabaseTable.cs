@@ -26,23 +26,31 @@ namespace Text_reader.Database_operations
         public virtual List<object> GetData()
         {
             List<object>data=new List<object>();
-            connection.Open();
-            using(SQLiteCommand command = new SQLiteCommand("SELECT * FROM "+TableName,connection))
+
+            using (connection = new SQLiteConnection(dbSource + DbName))
             {
 
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                connection.Open();
+
+
+
+                using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM " + TableName, connection))
                 {
-                    while (reader.Read())
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        data.Add(reader.GetValue(0));
+                        while (reader.Read())
+                        {
+                            data.Add(reader.GetValue(0));
+                        }
+
+
+
                     }
 
-
-
                 }
-
+                connection.Close();
             }
-            connection.Close();
 
             return data;
         }

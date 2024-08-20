@@ -251,7 +251,7 @@ namespace Text_reader
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow settingsWindow = new SettingsWindow();
+            ConfigurationsWindow settingsWindow = new ConfigurationsWindow();
 
             
 

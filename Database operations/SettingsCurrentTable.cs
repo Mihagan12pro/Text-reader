@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Text_reader.Database_operations
 {
@@ -43,6 +46,45 @@ namespace Text_reader.Database_operations
 
 
             }
+        }
+
+
+        public void AddToCombobox(List<object>list,ComboBox combo)
+        {
+            int i;
+
+            switch(combo.Name)
+            {
+                case "SetVoiceCB":
+                    i = 0;
+                    break;
+                case "SetRatioCB":
+                    i = 1;
+                    break;
+                case "SetVolumeCB":
+                    i = 2;
+                    break;
+                default:
+                    i = -1;
+                    break;
+            }
+            if (i==-1)
+            {
+                MessageBox.Show("Database error!");
+                return;
+            }
+
+            var datas = GetData()[i];
+
+          
+            int plus = 1;
+            foreach (var item in list)
+            {
+
+                combo.Items.Add(item);
+
+            }
+            combo.SelectedItem = datas;
         }
 
         protected override void MakeTableFull()
@@ -102,12 +144,14 @@ namespace Text_reader.Database_operations
                     connection.Close();
                 }
 
+                
 
 
              
 
                 //connection.Close();
             }
+            
         }
     }
 }
