@@ -12,7 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 using NAudio.Wave;
 using NAudio.Lame;
 using Microsoft.Win32;
-
+using Text_reader.Database_operations;
 
 
 namespace Text_reader
@@ -95,6 +95,25 @@ namespace Text_reader
             
         }
 
+        private static void CreateWavFile()
+        {
+            SettingsCurrentTable settings = new SettingsCurrentTable();
+
+           
+
+            synthesizer.Rate =Convert.ToInt32( settings.GetData()[2]);
+
+          
+
+            synthesizer.SetOutputToWaveFile("output.wav");
+            synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
+            synthesizer.SetOutputToDefaultAudioDevice();
+
+
+
+
+        }
+
         private static void AddAudioToAudioMiaEl()
         {
            
@@ -111,9 +130,7 @@ namespace Text_reader
 
 
 
-            synthesizer.SetOutputToWaveFile("output.wav");
-            synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
-            synthesizer.SetOutputToDefaultAudioDevice();
+            CreateWavFile();
 
             FileInfo file = new FileInfo("output.wav");
 
@@ -186,9 +203,7 @@ namespace Text_reader
         {
             if (!File.Exists("output.wav"))
             {
-                synthesizer.SetOutputToWaveFile("output.wav");
-                synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
-                synthesizer.SetOutputToDefaultAudioDevice();
+                CreateWavFile();
             }
 
             using (AudioFileReader wav = new AudioFileReader("output.wav"))

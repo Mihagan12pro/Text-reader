@@ -24,9 +24,9 @@ namespace Text_reader
     /// <summary>
     /// Логика взаимодействия для SettingsWindow.xaml
     /// </summary>
-    public partial class ConfigurationsWindow : Window
+    public partial class SettingsWindow : Window
     {
-        public ConfigurationsWindow()
+        public SettingsWindow()
         {
             InitializeComponent();
 

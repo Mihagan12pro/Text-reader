@@ -12,7 +12,10 @@ namespace Text_reader.Database_operations
         protected bool exists = true;
         public AbstractSettingsTable()
         {
-            DbName = "Databases\\settings db\\settings.db";
+            FileInfo file = new FileInfo("..\\..\\Database operations\\settings.db");
+
+
+            DbName = file.FullName;
 
 
             if (!System.IO.File.Exists(DbName))

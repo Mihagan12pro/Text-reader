@@ -16,7 +16,7 @@ namespace Text_reader.Database_operations
         {
             this.TableName = TableName;
 
-            DbName = @"Databases\values.sqlite3";
+            DbName = @"..\..\Database operations\values.sqlite3";
 
           
 
