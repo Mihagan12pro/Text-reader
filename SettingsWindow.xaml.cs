@@ -53,9 +53,11 @@ namespace Text_reader
                 SetVolumeCB.Items.Add(i.ToString());
             }
 
-            SettingsDefaultTable baseTable = new SettingsDefaultTable();
+            //SettingsDefaultTable baseTable = new SettingsDefaultTable();
 
-            this.Closing += Time_Closing; ;
+            this.Closing += Time_Closing;
+
+            SettingsCurrentTable currentTable = new SettingsCurrentTable();
             
         }
 

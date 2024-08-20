@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Text_reader.Database_operations
 {
-    internal class ValuesTable:DatabaseTable
+    internal class ValuesTable:AbstractDatabaseTable
     {
         public ValuesTable(string TableName)
         {

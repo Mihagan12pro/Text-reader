@@ -135,9 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database operations\DatabaseTable.cs" />
-    <Compile Include="Database operations\SettingBaseTable.cs" />
-    <Compile Include="Database operations\SettingsTable.cs" />
+    <Compile Include="Database operations\AbstractDatabaseTable.cs" />
+    <Compile Include="Database operations\SettingsCurrentTable.cs" />
+    <Compile Include="Database operations\SettingsDefaultTable.cs" />
+    <Compile Include="Database operations\AbstractSettingsTable.cs" />
     <Compile Include="Database operations\ValuesTable.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>

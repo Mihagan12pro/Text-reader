@@ -7,10 +7,10 @@ using System.IO;
 using System.Data.SQLite;
 namespace Text_reader.Database_operations
 {
-    internal abstract class SettingsTable:DatabaseTable
+    internal abstract class AbstractSettingsTable:AbstractDatabaseTable
     {
         protected bool exists = true;
-        public SettingsTable()
+        public AbstractSettingsTable()
         {
             DbName = "Databases\\settings db\\settings.db";
 
@@ -26,12 +26,14 @@ namespace Text_reader.Database_operations
         protected virtual void MakeTableFull()
         {
 
+
+
             SQLiteConnection conn = new SQLiteConnection("Data Source="+DbName);
 
 
                 conn.Open();
 
-            using (SQLiteCommand com = new SQLiteCommand("CREATE TABLE IF NOT EXISTS base(voice TEXT,volume INTEGER,ratio REAL)", conn))
+            using (SQLiteCommand com = new SQLiteCommand($"CREATE TABLE IF NOT EXISTS {TableName}(voice TEXT,volume INTEGER,ratio REAL)", conn))
             {
                 com.ExecuteNonQuery();
 

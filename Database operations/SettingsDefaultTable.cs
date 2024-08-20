@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Text_reader.Database_operations
 {
-    internal class SettingsDefaultTable : SettingsTable
+    internal class SettingsDefaultTable : AbstractSettingsTable
     {
         FileInfo dbFile;
         public SettingsDefaultTable() : base()
@@ -22,8 +22,8 @@ namespace Text_reader.Database_operations
 
             if (!exists)
             {
-               
 
+               // File.Create();
                 
 
                 MakeTableFull();

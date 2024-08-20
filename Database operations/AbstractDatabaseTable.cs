@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace Text_reader.Database_operations
 {
-    internal abstract class DatabaseTable
+    internal abstract class AbstractDatabaseTable
     {
+
+        protected const string dbSource = "Data Source=";
+
         public string TableName { get; protected set; }
         public string DbName { get;protected set; }
 
        protected SQLiteConnection connection;
 
-        public DatabaseTable()
+        public AbstractDatabaseTable()
         {
             
         }
