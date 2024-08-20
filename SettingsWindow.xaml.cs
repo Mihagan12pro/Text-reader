@@ -101,7 +101,14 @@ namespace Text_reader
             this.Closing += Time_Closing;
 
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
-            currentTable.SetCombosItems(SetVoiceCB,SetVolumeCB,SetRatioCB);
+
+            List<object> selectedDataList = currentTable.GetData();
+
+            SetVoiceCB.SelectedItem = selectedDataList[0];
+
+            SetVolumeCB.SelectedItem =Convert.ToString( selectedDataList[1]);
+
+            SetRatioCB.SelectedItem =Convert.ToString( selectedDataList[2]);
 
 //        SetVoiceCB.SelectedItem =    currentTable.GetCurrentData(volumes.ConvertAll(item => (object)item), SetVoiceCB);
 

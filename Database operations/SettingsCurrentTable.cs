@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace Text_reader.Database_operations
 {
@@ -48,97 +49,37 @@ namespace Text_reader.Database_operations
 
             }
         }
-
-
-        public void SetCombosItems(ComboBox comboVoice,ComboBox comboVolume,ComboBox comboRatio)
+        public override List<object> GetData()
         {
-            using (connection = new SQLiteConnection(dbSource+DbName))
+
+            List<object> list = new List<object>();
+
+            using (connection = new SQLiteConnection(dbSource + DbName))
             {
                 connection.Open();
 
+              
 
                 using (SQLiteCommand selectCommand = new SQLiteCommand(connection))
                 {
                     selectCommand.CommandText = "SELECT * FROM current";
 
 
-                    using(SQLiteDataReader selectReader = selectCommand.ExecuteReader())
+                    using (SQLiteDataReader selectReader = selectCommand.ExecuteReader())
                     {
-                        while(selectReader.Read())
+                        while (selectReader.Read())
                         {
-                            comboVoice.SelectedItem = selectReader.GetString(0);
-                            comboVolume.SelectedItem = selectReader.GetInt32(1).ToString();
-                            comboRatio.SelectedItem = selectReader.GetDouble(2).ToString();
+                           list.Add( selectReader.GetValue(0));
+                            list.Add(selectReader.GetValue(1));
+                            list.Add(selectReader.GetValue(2));
                         }
                     }
                 }
                 connection.Close();
             }
+            return list;
 
-
-            //int i;
-
-            //switch(combo.Name)
-            //{
-            //    case "SetVoiceCB":
-            //        i = 0;
-            //        break;
-            //    case "SetRatioCB":
-            //        i = 1;
-            //        break;
-            //    case "SetVolumeCB":
-            //        i = 2;
-            //        break;
-            //    default:
-            //        i = -1;
-            //        break;
-            //}
-            //if (i==-1)
-            //{
-            //    MessageBox.Show("Database error!");
-            //    return null;
-            //}
-
-         
-
-            ////var datas = GetData()[i];
-            //string datas="";
-            //using (SQLiteConnection selectConnection = new SQLiteConnection(dbSource+DbName))
-            //{
-            //    selectConnection.Open();
-
-            //    using (SQLiteCommand selectCommand = new SQLiteCommand("SELECT * FROM current",selectConnection))
-            //    {
-            //        using (SQLiteDataReader selectReader = selectCommand.ExecuteReader())
-            //        {
-            //            while (selectReader.Read())
-            //            {
-            //                datas = Convert.ToString(selectReader.GetValue(i));
-
-                         
-            //            }
-
-            //            foreach (var item in list)
-            //            {
-
-            //                combo.Items.Add(item);
-
-            //            }
-                       
-
-            //        }
-
-
-
-            //    }
-
-            //    selectConnection.Close();
-            //}
-            //return datas;
-          
-      
         }
-
         protected override void MakeTableFull()
         {
             using (connection = new SQLiteConnection(dbSource + DbName))
