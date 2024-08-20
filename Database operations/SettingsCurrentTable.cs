@@ -43,48 +43,100 @@ namespace Text_reader.Database_operations
 
                   
                 }
+                connection.Close();
 
 
             }
         }
 
 
-        public void AddToCombobox(List<object>list,ComboBox combo)
+        public void SetCombosItems(ComboBox comboVoice,ComboBox comboVolume,ComboBox comboRatio)
         {
-            int i;
-
-            switch(combo.Name)
+            using (connection = new SQLiteConnection(dbSource+DbName))
             {
-                case "SetVoiceCB":
-                    i = 0;
-                    break;
-                case "SetRatioCB":
-                    i = 1;
-                    break;
-                case "SetVolumeCB":
-                    i = 2;
-                    break;
-                default:
-                    i = -1;
-                    break;
-            }
-            if (i==-1)
-            {
-                MessageBox.Show("Database error!");
-                return;
+                connection.Open();
+
+
+                using (SQLiteCommand selectCommand = new SQLiteCommand(connection))
+                {
+                    selectCommand.CommandText = "SELECT * FROM current";
+
+
+                    using(SQLiteDataReader selectReader = selectCommand.ExecuteReader())
+                    {
+                        while(selectReader.Read())
+                        {
+                            comboVoice.SelectedItem = selectReader.GetString(0);
+                            comboVolume.SelectedItem = selectReader.GetInt32(1).ToString();
+                            comboRatio.SelectedItem = selectReader.GetDouble(2).ToString();
+                        }
+                    }
+                }
+                connection.Close();
             }
 
-            var datas = GetData()[i];
 
+            //int i;
+
+            //switch(combo.Name)
+            //{
+            //    case "SetVoiceCB":
+            //        i = 0;
+            //        break;
+            //    case "SetRatioCB":
+            //        i = 1;
+            //        break;
+            //    case "SetVolumeCB":
+            //        i = 2;
+            //        break;
+            //    default:
+            //        i = -1;
+            //        break;
+            //}
+            //if (i==-1)
+            //{
+            //    MessageBox.Show("Database error!");
+            //    return null;
+            //}
+
+         
+
+            ////var datas = GetData()[i];
+            //string datas="";
+            //using (SQLiteConnection selectConnection = new SQLiteConnection(dbSource+DbName))
+            //{
+            //    selectConnection.Open();
+
+            //    using (SQLiteCommand selectCommand = new SQLiteCommand("SELECT * FROM current",selectConnection))
+            //    {
+            //        using (SQLiteDataReader selectReader = selectCommand.ExecuteReader())
+            //        {
+            //            while (selectReader.Read())
+            //            {
+            //                datas = Convert.ToString(selectReader.GetValue(i));
+
+                         
+            //            }
+
+            //            foreach (var item in list)
+            //            {
+
+            //                combo.Items.Add(item);
+
+            //            }
+                       
+
+            //        }
+
+
+
+            //    }
+
+            //    selectConnection.Close();
+            //}
+            //return datas;
           
-            int plus = 1;
-            foreach (var item in list)
-            {
-
-                combo.Items.Add(item);
-
-            }
-            combo.SelectedItem = datas;
+      
         }
 
         protected override void MakeTableFull()

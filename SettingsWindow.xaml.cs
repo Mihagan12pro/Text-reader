@@ -40,7 +40,7 @@ namespace Text_reader
 
             foreach(var i in voicesTable.GetData())
             {
-                //SetVoiceCB.Items.Add(i.ToString());
+              //  SetVoiceCB.Items.Add(i.ToString());
 
 
                 voices.Add(i.ToString());
@@ -69,21 +69,48 @@ namespace Text_reader
             voices.Sort();
             volumes.Sort();
             ratios.Sort();
+            foreach (var i in voices)
+            {
+                SetVoiceCB.Items.Add(i.ToString());
+
+
+               // voices.Add(i.ToString());
+            }
 
             
+
+            foreach (var i in ratios)
+            {
+                SetRatioCB.Items.Add(i.ToString());
+
+                //ratios.Add(Convert.ToDouble(i.ToString()));
+            }
+
+
+            foreach (var i in volumes)
+            {
+                SetVolumeCB.Items.Add(i.ToString());
+
+
+               // volumes.Add(Convert.ToInt32(i.ToString()));
+            }
+
 
             //SettingsDefaultTable baseTable = new SettingsDefaultTable();
 
             this.Closing += Time_Closing;
 
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
+            currentTable.SetCombosItems(SetVoiceCB,SetVolumeCB,SetRatioCB);
 
-            
+//        SetVoiceCB.SelectedItem =    currentTable.GetCurrentData(volumes.ConvertAll(item => (object)item), SetVoiceCB);
 
-            currentTable.AddToCombobox(voices.ConvertAll(item => (object)item), SetVoiceCB);
-            currentTable.AddToCombobox(volumes.ConvertAll(item => (object)item), SetVolumeCB);
-            currentTable.AddToCombobox(ratios.ConvertAll(item => (object)item), SetRatioCB);
-            
+////SetVoiceCB.SelectedItem=                currentTable.GetCurrentData(voices.ConvertAll(item => (object)item), SetVoiceCB);
+ 
+//            var a = currentTable.GetCurrentData(ratios.ConvertAll(item => (object)item), SetRatioCB);
+//            SetRatioCB.SelectedItem = a;
+
+//            var b = a;
         }
 
         private void Time_Closing(object sender, System.ComponentModel.CancelEventArgs e)//В будущем удалить

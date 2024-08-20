@@ -12,6 +12,8 @@ namespace Text_reader.Database_operations
 
         protected const string dbSource = "Data Source=";
 
+        protected string getDataQuery = "";
+
         public string TableName { get; protected set; }
         public string DbName { get;protected set; }
 
@@ -27,30 +29,30 @@ namespace Text_reader.Database_operations
         {
             List<object>data=new List<object>();
 
-            using (connection = new SQLiteConnection(dbSource + DbName))
+         using   (connection = new SQLiteConnection(dbSource+DbName))
             {
 
-                connection.Open();
+            connection.Open();
 
 
 
-                using (SQLiteCommand command = new SQLiteCommand("SELECT * FROM " + TableName, connection))
+            using(SQLiteCommand command = new SQLiteCommand("SELECT * FROM "+TableName,connection))
+            {
+
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            data.Add(reader.GetValue(0));
-                        }
-
-
-
+                        data.Add(reader.GetValue(0));
                     }
 
+
+
                 }
-                connection.Close();
+
             }
+            connection.Close();
+                }
 
             return data;
         }
