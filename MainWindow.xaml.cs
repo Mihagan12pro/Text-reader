@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Windows.Threading;
 using System;
+using System.Data.SQLite;
 namespace Text_reader
 {
     /// <summary>
@@ -43,6 +44,8 @@ namespace Text_reader
         public MainWindow()
         {
             InitializeComponent();
+
+            Closing += Closing_MainWindow;
 
 
             timer = new DispatcherTimer();
@@ -301,5 +304,25 @@ namespace Text_reader
             MainWindow.VolumeValuePropTb.Text = Convert.ToString(Math.Round(MainWindow.VolumeControllPropSlr.Value, 0)) + "%";
         }
 
+
+
+        private void Closing_MainWindow(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SQLiteConnection sQLiteConnection = new SQLiteConnection("Data Source="+"..\\..\\Database operations\\settings.db");
+
+
+            sQLiteConnection.Open();
+
+            using (SQLiteCommand dropCommand = new SQLiteCommand(sQLiteConnection))
+            {
+                dropCommand.CommandText = "DROP TABLE current";
+
+
+                dropCommand.ExecuteNonQuery();
+            }
+
+
+            sQLiteConnection.Close();
+        }
     }
 }

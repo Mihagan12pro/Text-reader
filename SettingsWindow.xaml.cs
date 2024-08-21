@@ -26,6 +26,8 @@ namespace Text_reader
     /// </summary>
     public partial class SettingsWindow : Window
     {
+
+        //private static bool isSaved = false;
         public SettingsWindow()
         {
             InitializeComponent();
@@ -81,7 +83,7 @@ namespace Text_reader
 
             foreach (var i in ratios)
             {
-                SetRatioCB.Items.Add(i.ToString());
+                SetRateCB.Items.Add(i.ToString());
 
                 //ratios.Add(Convert.ToDouble(i.ToString()));
             }
@@ -98,7 +100,7 @@ namespace Text_reader
 
             //SettingsDefaultTable baseTable = new SettingsDefaultTable();
 
-            this.Closing += Time_Closing;
+            this.Closing += Closing_message;
 
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
 
@@ -108,23 +110,40 @@ namespace Text_reader
 
             SetVolumeCB.SelectedItem =Convert.ToString( selectedDataList[1]);
 
-            SetRatioCB.SelectedItem =Convert.ToString( selectedDataList[2]);
+            SetRateCB.SelectedItem =Convert.ToString( selectedDataList[2]);
 
-//        SetVoiceCB.SelectedItem =    currentTable.GetCurrentData(volumes.ConvertAll(item => (object)item), SetVoiceCB);
 
-////SetVoiceCB.SelectedItem=                currentTable.GetCurrentData(voices.ConvertAll(item => (object)item), SetVoiceCB);
- 
-//            var a = currentTable.GetCurrentData(ratios.ConvertAll(item => (object)item), SetRatioCB);
-//            SetRatioCB.SelectedItem = a;
-
-//            var b = a;
         }
 
-        private void Time_Closing(object sender, System.ComponentModel.CancelEventArgs e)//В будущем удалить
+        private void Closing_message(object sender, System.ComponentModel.CancelEventArgs e)//В будущем удалить
         {
-            //System.IO.File.Delete("Databases\\settings db\\settings.db");
+            SettingsCurrentTable currentTable = new SettingsCurrentTable();
+
+            string dbVoice = currentTable.GetData()[0].ToString();
+            string dbVolume = Convert.ToInt32(currentTable.GetData()[1]).ToString();
+            string dbRate = Convert.ToInt32(currentTable.GetData()[2]).ToString();
+
+            if (dbRate != SetRateCB.SelectedItem || dbVoice != SetVoiceCB.SelectedItem || dbVolume != SetVolumeCB.SelectedItem)
+            {
+                var answer = MessageBox.Show("Are you sure that you don't want to save new settings?", "", MessageBoxButton.YesNo);
+
+                if (answer == MessageBoxResult.No)
+                    e.Cancel = true;
+
+
+
+                return;
+
+
+
+            }
+
         }
 
+        private void AcceptSettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 
