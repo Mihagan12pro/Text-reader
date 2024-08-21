@@ -27,14 +27,14 @@ namespace Text_reader
     public partial class SettingsWindow : Window
     {
 
-        //private static bool isSaved = false;
+        
         public SettingsWindow()
         {
             InitializeComponent();
 
             ValuesTable voicesTable = new ValuesTable("voices");
 
-           // List<string> voicesList = new List<string>();
+         
 
             List<string> voices = new List<string>();
             List<int> volumes = new List<int>();
@@ -42,7 +42,7 @@ namespace Text_reader
 
             foreach(var i in voicesTable.GetData())
             {
-              //  SetVoiceCB.Items.Add(i.ToString());
+              
 
 
                 voices.Add(i.ToString());
@@ -52,7 +52,7 @@ namespace Text_reader
 
             foreach(var i in ratiosTable.GetData())
             {
-               // SetRatioCB.Items.Add(i.ToString());
+             
 
                 ratios.Add(Convert.ToDouble(i.ToString()));
             }
@@ -61,7 +61,7 @@ namespace Text_reader
 
             foreach(var i in volumesTable.GetData())
             {
-                // SetVolumeCB.Items.Add(i.ToString());
+                
 
 
                 volumes.Add(Convert.ToInt32(i.ToString()));
@@ -71,6 +71,9 @@ namespace Text_reader
             voices.Sort();
             volumes.Sort();
             ratios.Sort();
+
+
+
             foreach (var i in voices)
             {
                 SetVoiceCB.Items.Add(i.ToString());
@@ -106,10 +109,9 @@ namespace Text_reader
 
             List<object> selectedDataList = currentTable.GetData();
 
+
             SetVoiceCB.SelectedItem = selectedDataList[0];
-
             SetVolumeCB.SelectedItem =Convert.ToString( selectedDataList[1]);
-
             SetRateCB.SelectedItem =Convert.ToString( selectedDataList[2]);
 
 
@@ -119,11 +121,21 @@ namespace Text_reader
         {
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
 
-            string dbVoice = currentTable.GetData()[0].ToString();
-            string dbVolume = Convert.ToInt32(currentTable.GetData()[1]).ToString();
-            string dbRate = Convert.ToInt32(currentTable.GetData()[2]).ToString();
+            string dbVoice =   Convert.ToString( currentTable.GetData()[0]);
+            string dbVolume = Convert.ToString(Convert.ToInt32(currentTable.GetData()[1]));
+            string dbRate = Convert.ToString(Convert.ToInt32(currentTable.GetData()[2]));
 
-            if (dbRate != SetRateCB.SelectedItem || dbVoice != SetVoiceCB.SelectedItem || dbVolume != SetVolumeCB.SelectedItem)
+
+            //var a = dbVoice;
+            //var b1 = SetVoiceCB.SelectedValue;
+            
+            //var b2 = b1;
+
+
+            //bool c1 = a.Equals(b1);
+            //bool c2 = c1;
+
+            if (!dbRate.Equals( SetRateCB.SelectedValue) || !dbVoice.Equals( SetVoiceCB.SelectedValue) || !dbVolume.Equals(SetVolumeCB.SelectedValue))
             {
                 var answer = MessageBox.Show("Are you sure that you don't want to save new settings?", "", MessageBoxButton.YesNo);
 
@@ -140,9 +152,21 @@ namespace Text_reader
 
         }
 
+
+
+
+
+
+
+
+
         private void AcceptSettingsBtn_Click(object sender, RoutedEventArgs e)
         {
+            SettingsCurrentTable currentTable = new SettingsCurrentTable();
 
+            currentTable.UpdateItself("voice",SetVoiceCB.SelectedItem.ToString());
+            currentTable.UpdateItself("volume", SetVolumeCB.SelectedItem.ToString());
+            currentTable.UpdateItself("rate", SetRateCB.SelectedItem.ToString());
         }
     }
 
