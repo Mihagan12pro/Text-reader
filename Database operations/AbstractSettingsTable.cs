@@ -36,12 +36,12 @@ namespace Text_reader.Database_operations
 
                 conn.Open();
 
-            using (SQLiteCommand com = new SQLiteCommand($"CREATE TABLE IF NOT EXISTS {TableName}(voice TEXT,volume INTEGER,ratio REAL)", conn))
+            using (SQLiteCommand com = new SQLiteCommand($"CREATE TABLE IF NOT EXISTS {TableName}(voice TEXT,volume INTEGER,rate INTEGER    )", conn))
             {
                 com.ExecuteNonQuery();
 
                 ValuesTable tableVoice = new ValuesTable("voices");
-                ValuesTable tableRatio = new ValuesTable("ratios");
+                ValuesTable tableRatio = new ValuesTable("rates");
                 ValuesTable tableVolume = new ValuesTable("volumes");
 
                 string baseVoice = Convert.ToString(tableVoice.GetBaseData());
@@ -51,7 +51,7 @@ namespace Text_reader.Database_operations
      
 
 
-                SQLiteCommand com2 = new SQLiteCommand("INSERT INTO " + TableName + $" (voice,volume,ratio) Values('{baseVoice}',{Convert.ToInt32(baseVolume)},{Convert.ToDouble(baseRatio)})", conn);
+                SQLiteCommand com2 = new SQLiteCommand("INSERT INTO " + TableName + $" (voice,volume,rate) Values('{baseVoice}',{Convert.ToInt32(baseVolume)},{Convert.ToInt32(baseRatio)})", conn);
 
                 com2.ExecuteNonQuery();
 

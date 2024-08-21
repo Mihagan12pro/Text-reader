@@ -46,7 +46,7 @@ namespace Text_reader
                 voices.Add(i.ToString());
             }
             
-            ValuesTable ratiosTable = new ValuesTable("ratios");
+            ValuesTable ratiosTable = new ValuesTable("rates");
 
             foreach(var i in ratiosTable.GetData())
             {

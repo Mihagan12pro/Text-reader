@@ -99,11 +99,14 @@ namespace Text_reader
         {
             SettingsCurrentTable settings = new SettingsCurrentTable();
 
-           
 
+            synthesizer.Volume = Convert.ToInt32(settings.GetData()[1]);
             synthesizer.Rate =Convert.ToInt32( settings.GetData()[2]);
 
-          
+
+
+            synthesizer.SelectVoice(settings.GetData()[0].ToString());
+
 
             synthesizer.SetOutputToWaveFile("output.wav");
             synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);

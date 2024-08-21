@@ -115,7 +115,7 @@ namespace Text_reader.Database_operations
                         }
                         voice = columnList[0].ToString();
                         volume = Convert.ToInt32(columnList[1]);
-                        ratio = (double)(columnList[2]);     
+                        ratio = Convert.ToInt32(columnList[2]);     
 
                         
                         
