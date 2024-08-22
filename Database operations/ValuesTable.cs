@@ -22,7 +22,7 @@ namespace Text_reader.Database_operations
 
             connection = new System.Data.SQLite.SQLiteConnection("Data Source="+DbName);
 
-
+            columnsCount = 1;
 
         }
 

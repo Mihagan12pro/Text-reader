@@ -171,6 +171,23 @@ namespace Text_reader
                 Speaker.CurrentSpeaker.DestructSpeaker();
             
         }
+
+        private void AbortSettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsDefaultTable defaultTable = new SettingsDefaultTable();
+
+
+          var oldData =  defaultTable.AbortCurrentUpdate();
+
+
+            SetVoiceCB.SelectedItem =Convert.ToString( oldData[0]);
+            SetVolumeCB.SelectedItem = Convert.ToString( oldData[1]);
+            SetRateCB.SelectedItem = Convert.ToString( oldData[2]);
+
+            if (Speaker.CurrentSpeaker != null)
+
+                Speaker.CurrentSpeaker.DestructSpeaker();
+        }
     }
 
 

@@ -8,6 +8,9 @@ using System.IO;
 using System.Windows.Threading;
 using System;
 using System.Data.SQLite;
+using Text_reader.Database_operations;
+using System.ComponentModel;
+
 namespace Text_reader
 {
     /// <summary>
@@ -45,7 +48,9 @@ namespace Text_reader
         {
             InitializeComponent();
 
-            Closing += Closing_MainWindow;
+            
+           
+
 
 
             timer = new DispatcherTimer();
@@ -315,7 +320,7 @@ namespace Text_reader
 
             using (SQLiteCommand dropCommand = new SQLiteCommand(sQLiteConnection))
             {
-                dropCommand.CommandText = "DROP TABLE current";
+                dropCommand.CommandText = "DROP TABLE IF EXISTS current";
 
 
                 dropCommand.ExecuteNonQuery();
@@ -323,6 +328,36 @@ namespace Text_reader
 
 
             sQLiteConnection.Close();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            //base.OnClosing(e);
+
+            
+            if (File.Exists("output.wav"))
+            {
+                try
+                {
+                    File.Delete("output.wav");
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            if (File.Exists("..\\..\\Database operations\\settings.db"))
+            {
+                SQLiteConnection connection = new SQLiteConnection("Data Source="+"..\\..\\Database operations\\settings.db");
+
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = "DROP TABLE IF EXISTS current ";
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
         }
     }
 }

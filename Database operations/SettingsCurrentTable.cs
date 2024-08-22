@@ -72,37 +72,7 @@ namespace Text_reader.Database_operations
 
             }
         }
-        public override List<object> GetData()
-        {
-
-            List<object> list = new List<object>();
-
-            using (connection = new SQLiteConnection(dbSource + DbName))
-            {
-                connection.Open();
-
-              
-
-                using (SQLiteCommand selectCommand = new SQLiteCommand(connection))
-                {
-                    selectCommand.CommandText = "SELECT * FROM current";
-
-
-                    using (SQLiteDataReader selectReader = selectCommand.ExecuteReader())
-                    {
-                        while (selectReader.Read())
-                        {
-                           list.Add( selectReader.GetValue(0));
-                            list.Add(selectReader.GetValue(1));
-                            list.Add(selectReader.GetValue(2));
-                        }
-                    }
-                }
-                connection.Close();
-            }
-            return list;
-
-        }
+       
         protected override void MakeTableFull()
         {
             using (connection = new SQLiteConnection(dbSource + DbName))

@@ -9,7 +9,7 @@ namespace Text_reader.Database_operations
 {
     internal abstract class AbstractDatabaseTable
     {
-
+        protected  int columnsCount;
         protected const string dbSource = "Data Source=";
 
         protected string getDataQuery = "";
@@ -21,11 +21,11 @@ namespace Text_reader.Database_operations
 
         public AbstractDatabaseTable()
         {
-            
+            columnsCount = 3;
         }
 
 
-        public virtual List<object> GetData()
+        public List<object> GetData()
         {
             List<object>data=new List<object>();
 
@@ -43,7 +43,8 @@ namespace Text_reader.Database_operations
                 {
                     while (reader.Read())
                     {
-                        data.Add(reader.GetValue(0));
+                        for(int i=0;i< columnsCount;i++)
+                        data.Add(reader.GetValue(i));
                     }
 
 

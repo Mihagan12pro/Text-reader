@@ -107,6 +107,12 @@ namespace Text_reader
         {
             SettingsCurrentTable settings = new SettingsCurrentTable();
 
+            var a = settings.GetData()[0];
+            var b = settings.GetData()[1];
+            var c = settings.GetData()[2];
+
+
+            synthesizer.SelectVoice(settings.GetData()[0].ToString());
 
             synthesizer.Volume = Convert.ToInt32(settings.GetData()[1]);
   
@@ -114,13 +120,14 @@ namespace Text_reader
 
 
 
-            synthesizer.SelectVoice(settings.GetData()[0].ToString());
+           
          
 
             synthesizer.SetOutputToWaveFile("output.wav");
             synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
             synthesizer.SetOutputToDefaultAudioDevice();
 
+           
 
 
 
@@ -128,29 +135,23 @@ namespace Text_reader
 
         private static void AddAudioToAudioMiaEl()
         {
-           
 
+            FileInfo file = new FileInfo("output.wav");
 
-            if(File.Exists("output.wav"))
-            {
+            File.Delete(file.FullName);
 
-                File.Delete("output.wav");
-
-                MainWindow.AudioPropMiaEl.Source = null;
-
-            }
+            MainWindow.AudioPropMiaEl.Source = null;
 
 
 
             CreateWavFile();
 
-            FileInfo file = new FileInfo("output.wav");
 
             MainWindow.PlayPropSlr.IsEnabled = true;
 
             MainWindow.AudioPropMiaEl.Source = new Uri(file.FullName);
 
-
+           // File.Delete(file.FullName);
 
             
 
@@ -177,6 +178,9 @@ namespace Text_reader
                 MainWindow.PlayPauseResumePropBtn.Content = "Resume";
 
                 MainWindow.AudioPropMiaEl.Pause();
+               
+
+                
 
                 return;
             }
@@ -278,10 +282,7 @@ namespace Text_reader
             MainWindow.TextFilesPathPropTb.TextChanged += MainWindow.TextFilesPathTb_TextChanged;
             MainWindow.PlayPauseResumePropBtn.Click += MainWindow.PlayPauseResumeBtn_Click;
 
-            if (File.Exists("output.wav"))
-            {
-                File.Delete("output.wav");
-            }
+
 
             //MainWindow.AudioPropMiaEl.Source = null;
 
