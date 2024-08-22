@@ -29,8 +29,16 @@ namespace Text_reader
 
         private bool isPlay = true;
 
+
+        public SettingsCurrentTable SettingsCurrent { get; private set; }
+
+        public static Speaker CurrentSpeaker { get; private set; }
+
         public Speaker()
         {
+            SettingsCurrent = new SettingsCurrentTable();
+            CurrentSpeaker = this;
+
             MainWindow.SaveInMp3PropBtn.IsEnabled = true;
             MainWindow.VolumeControllPropSlr.IsEnabled = true;
             MainWindow.MaximizeSpeedPropBtn.IsEnabled = true;
@@ -101,12 +109,13 @@ namespace Text_reader
 
 
             synthesizer.Volume = Convert.ToInt32(settings.GetData()[1]);
+  
             synthesizer.Rate =Convert.ToInt32( settings.GetData()[2]);
 
 
 
             synthesizer.SelectVoice(settings.GetData()[0].ToString());
-
+         
 
             synthesizer.SetOutputToWaveFile("output.wav");
             synthesizer.Speak(MainWindow.AddTextForReadingPropTb.Text);
@@ -243,7 +252,7 @@ namespace Text_reader
             
         }
 
-        private void DestructSpeaker()
+        public void DestructSpeaker()
         {
           
 
@@ -255,7 +264,7 @@ namespace Text_reader
             MainWindow.PlayPropSlr.ValueChanged -= PlayPropSlr_ValueChanged;
             MainWindow.AddTextForReadingPropTb.TextChanged -= AddTextForReadingTb_CheckChanges;
 
-
+            MainWindow.AudioPropMiaEl.Source = null;
 
 
             MainWindow.SaveInMp3PropBtn.IsEnabled = false;
@@ -276,7 +285,7 @@ namespace Text_reader
 
             //MainWindow.AudioPropMiaEl.Source = null;
 
-            speaker = null;
+            CurrentSpeaker = null;
         }
 
     }

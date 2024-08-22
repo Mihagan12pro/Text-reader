@@ -112,13 +112,13 @@ namespace Text_reader.Database_operations
                                     if (Int32.TryParse(data, out iData))
                                     {
 
-                                        updateCommand.CommandText = $"UPDATE {TableName} SET {row}={Convert.ToInt32(data)}";
+                                        updateCommand.CommandText = $"UPDATE {TableName} SET {row}={iData} WHERE rowid = {1}";
                                     }
                                     else
                                     {
                                        
 
-                                        updateCommand.CommandText = $"UPDATE {TableName} SET {row}={data}";
+                                        updateCommand.CommandText = $"UPDATE {TableName} SET {row}='{data}' WHERE rowid = {1}";
                                     }
 
 

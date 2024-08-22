@@ -14,6 +14,11 @@ namespace Text_reader.Database_operations
 {
     internal class SettingsCurrentTable : AbstractSettingsTable
     {
+        public readonly int Volume, Rate;
+        public readonly string Voice;
+
+       
+
         public SettingsCurrentTable()
         {
             TableName = "current";
@@ -44,8 +49,26 @@ namespace Text_reader.Database_operations
 
                   
                 }
-               // connection.Close();
 
+                using (SQLiteConnection connection2 = new SQLiteConnection(dbSource + DbName))
+                {
+                    connection2.Open();
+                    using (SQLiteCommand selectCommand = new SQLiteCommand(connection2))
+                    {
+                        selectCommand.CommandText = "SELECT * FROM current";
+                        using (SQLiteDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Voice = reader.GetString(0);
+                                Volume =Convert.ToInt32( reader.GetValue(1));
+                                Rate = Convert.ToInt32(reader.GetValue(2));
+                            }
+                        }
+                    }
+                    connection2.Close();
+                }
+               
 
             }
         }
@@ -88,7 +111,7 @@ namespace Text_reader.Database_operations
 
                 string voice="";
                 int volume=0;
-                double ratio=0;
+                double rate=0;
 
                 using (SQLiteCommand selectCommand = new SQLiteCommand(connection))
                 {
@@ -115,7 +138,7 @@ namespace Text_reader.Database_operations
                         }
                         voice = columnList[0].ToString();
                         volume = Convert.ToInt32(columnList[1]);
-                        ratio = Convert.ToInt32(columnList[2]);     
+                        rate = Convert.ToInt32(columnList[2]);     
 
                         
                         
@@ -125,12 +148,12 @@ namespace Text_reader.Database_operations
 
                      using (SQLiteCommand createCommand = new SQLiteCommand(connection))
                      {
-                        createCommand.CommandText = $"CREATE TABLE {TableName} (voice TEXT, volume INTEGER,ratio REAL)";
+                        createCommand.CommandText = $"CREATE TABLE {TableName} (voice TEXT, volume INTEGER,rate REAL)";
                         createCommand.ExecuteNonQuery();
 
                         using (SQLiteCommand insertCommand = new SQLiteCommand(connection))
                         {
-                            insertCommand.CommandText = $"INSERT INTO {TableName} VALUES('{voice}',{volume},{ratio})";
+                            insertCommand.CommandText = $"INSERT INTO {TableName} VALUES('{voice}',{volume},{rate})";
                             insertCommand.ExecuteNonQuery();
                         }
                      }

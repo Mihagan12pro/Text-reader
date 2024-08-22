@@ -126,14 +126,7 @@ namespace Text_reader
             string dbRate = Convert.ToString(Convert.ToInt32(currentTable.GetData()[2]));
 
 
-            //var a = dbVoice;
-            //var b1 = SetVoiceCB.SelectedValue;
-            
-            //var b2 = b1;
-
-
-            //bool c1 = a.Equals(b1);
-            //bool c2 = c1;
+       
 
             if (!dbRate.Equals( SetRateCB.SelectedValue) || !dbVoice.Equals( SetVoiceCB.SelectedValue) || !dbVolume.Equals(SetVolumeCB.SelectedValue))
             {
@@ -162,11 +155,21 @@ namespace Text_reader
 
         private void AcceptSettingsBtn_Click(object sender, RoutedEventArgs e)
         {
+
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
 
             currentTable.UpdateItself("voice",SetVoiceCB.SelectedItem.ToString());
             currentTable.UpdateItself("volume", SetVolumeCB.SelectedItem.ToString());
             currentTable.UpdateItself("rate", SetRateCB.SelectedItem.ToString());
+
+
+
+           
+
+            if (Speaker.CurrentSpeaker!=null)
+
+                Speaker.CurrentSpeaker.DestructSpeaker();
+            
         }
     }
 
