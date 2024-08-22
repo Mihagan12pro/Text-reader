@@ -184,6 +184,24 @@ namespace Text_reader
             SetVolumeCB.SelectedItem = Convert.ToString( oldData[1]);
             SetRateCB.SelectedItem = Convert.ToString( oldData[2]);
 
+            DestructCurrentSpeaker();
+        }
+
+        private void EditDefaultBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsDefaultTable defaultTable = new SettingsDefaultTable();
+
+
+            defaultTable.UpdateItself("voice", SetVoiceCB.SelectedItem.ToString());
+            defaultTable.UpdateItself("volume", SetVolumeCB.SelectedItem.ToString());
+            defaultTable.UpdateItself("rate",SetRateCB.SelectedItem.ToString());
+
+
+            DestructCurrentSpeaker();
+        }
+
+        private void DestructCurrentSpeaker()
+        {
             if (Speaker.CurrentSpeaker != null)
 
                 Speaker.CurrentSpeaker.DestructSpeaker();

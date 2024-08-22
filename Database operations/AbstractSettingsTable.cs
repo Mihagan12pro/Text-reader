@@ -67,7 +67,7 @@ namespace Text_reader.Database_operations
         }
 
 
-       public void UpdateItself(string row,string data)
+       public virtual void UpdateItself(string row,string data)
         {
             int i;
             

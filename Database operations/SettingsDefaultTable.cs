@@ -61,5 +61,19 @@ namespace Text_reader.Database_operations
             }
             return oldData;
         }
+        public override void UpdateItself(string row, string data)
+        {
+
+            base.UpdateItself(row, data);
+
+
+            SettingsCurrentTable settingsCurrentTable = new SettingsCurrentTable();
+
+            settingsCurrentTable.UpdateItself(row, data);
+
+        }
+
+
+
     }
 }

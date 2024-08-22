@@ -107,10 +107,7 @@ namespace Text_reader
         {
             SettingsCurrentTable settings = new SettingsCurrentTable();
 
-            var a = settings.GetData()[0];
-            var b = settings.GetData()[1];
-            var c = settings.GetData()[2];
-
+          
 
             synthesizer.SelectVoice(settings.GetData()[0].ToString());
 
