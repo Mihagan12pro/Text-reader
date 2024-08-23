@@ -18,7 +18,7 @@
 
         <Button Name="AcceptSettingsBtn" Content=" Accept settings for current session" HorizontalAlignment="Left" Margin="79,226,0,0" VerticalAlignment="Top" Width="200" Click="AcceptSettingsBtn_Click"/>
         <Button Name="AbortSettingsBtn" Content="Abort these settings" HorizontalAlignment="Left" Margin="120,256,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="AbortSettingsBtn_Click"/>
-        <Button Name="AbortDefaultBtn" Content="Abort default settings" HorizontalAlignment="Left" Margin="120,284,0,0" VerticalAlignment="Top" Height="20" Width="120"/>
+        <Button Name="AbortDefaultBtn" Content="Abort default settings" HorizontalAlignment="Left" Margin="120,284,0,0" VerticalAlignment="Top" Height="20" Width="120" Click="AbortDefaultBtn_Click"/>
         <Button Name="EditDefaultBtn" Content="Edit default settings" HorizontalAlignment="Left" Margin="119,311,0,0" VerticalAlignment="Top" Width="121" Height="20" Click="EditDefaultBtn_Click"/>
 
     </Grid>

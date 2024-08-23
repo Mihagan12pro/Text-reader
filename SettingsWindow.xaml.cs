@@ -121,15 +121,16 @@ namespace Text_reader
         {
             SettingsCurrentTable currentTable = new SettingsCurrentTable();
 
-            string dbVoice =   Convert.ToString( currentTable.GetData()[0]);
+            string dbVoice = Convert.ToString(currentTable.GetData()[0]);
             string dbVolume = Convert.ToString(Convert.ToInt32(currentTable.GetData()[1]));
             string dbRate = Convert.ToString(Convert.ToInt32(currentTable.GetData()[2]));
 
 
-       
 
-            if (!dbRate.Equals( SetRateCB.SelectedValue) || !dbVoice.Equals( SetVoiceCB.SelectedValue) || !dbVolume.Equals(SetVolumeCB.SelectedValue))
+
+            if (!(dbRate.Equals(SetRateCB.SelectedValue)) || (!dbVoice.Equals(SetVoiceCB.SelectedValue)) || (!dbVolume.Equals(SetVolumeCB.SelectedValue)))
             {
+               
                 var answer = MessageBox.Show("Are you sure that you don't want to save new settings?", "", MessageBoxButton.YesNo);
 
                 if (answer == MessageBoxResult.No)
@@ -205,6 +206,24 @@ namespace Text_reader
             if (Speaker.CurrentSpeaker != null)
 
                 Speaker.CurrentSpeaker.DestructSpeaker();
+        }
+
+        private void AbortDefaultBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            SetVoiceCB.SelectedItem = new ValuesTable("voices").GetBaseData().ToString();
+            SetVolumeCB.SelectedItem = Convert.ToInt32(new ValuesTable("volumes").GetBaseData()).ToString();
+            SetRateCB.SelectedItem = Convert.ToInt32(new ValuesTable("rates").GetBaseData()).ToString();
+
+            SettingsDefaultTable defaultTable = new SettingsDefaultTable();
+
+
+            defaultTable.UpdateItself("voice", SetVoiceCB.SelectedItem.ToString());
+            defaultTable.UpdateItself("volume", SetVolumeCB.SelectedItem.ToString());
+            defaultTable.UpdateItself("rate", SetRateCB.SelectedItem.ToString());
+
+
+            DestructCurrentSpeaker();
         }
     }
 
